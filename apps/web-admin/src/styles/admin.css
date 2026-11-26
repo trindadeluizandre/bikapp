@@ -76,6 +76,8 @@ body {
   border: 1px solid #1f2937;
   border-radius: 10px;
   padding: 18px;
+  min-width: 0;
+  overflow-x: auto;
 }
 
 .span-2 {
@@ -99,23 +101,34 @@ body {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 0.83rem;
 }
 
-th, td {
-  padding: 9px;
+th,
+td {
+  padding: 7px 6px;
   text-align: left;
   border-bottom: 1px solid #1f2937;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+td:last-child,
+th:last-child {
+  white-space: nowrap;
+  text-align: right;
 }
 
 th {
   color: #9ca3af;
+  font-size: 0.78rem;
 }
 
 @media (max-width: 900px) {
   .admin-grid {
     grid-template-columns: 1fr 1fr;
   }
+
   .span-2 {
     grid-column: span 2;
   }
