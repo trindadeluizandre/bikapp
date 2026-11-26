@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>BikApp Cliente — Entrega Ecológica por Bike (Foz do Iguaçu)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/cliente/src/styles/client.css" />
+</head>
+<body>
+  <header class="client-header">
+    <div>
+      <span class="eco-badge">ZERO EMISSÃO • MODAL BIKE</span>
+      <h1>BikApp Cliente</h1>
+      <small id="clientCity">Foz do Iguaçu — Entregas Leves e Rápidas</small>
+    </div>
+    <div class="impact-pill">
+      <span>CO2 Evitado</span>
+      <strong id="co2SavedLabel">0,00 kg</strong>
+    </div>
+  </header>
+
+  <main class="client-main">
+    <section class="panel-box">
+      <h2>1. Meu Cadastro & Endereço de Entrega (Foz do Iguaçu)</h2>
+      <div style="margin-bottom: 10px;">
+        <label>
+          Cliente Ativo (Trocar Perfil ou Cadastrar Novo)
+          <select id="customerSelector"></select>
+        </label>
+      </div>
+      <form id="customerProfileForm">
+        <div class="two-cols">
+          <label>
+            Nome Completo
+            <input type="text" id="custName" placeholder="Ex: Maria Silva" required />
+          </label>
+          <label>
+            Telefone / WhatsApp
+            <input type="text" id="custPhone" placeholder="(45) 99999-0000" required />
+          </label>
+        </div>
+        <div class="two-cols">
+          <label>
+            Bairro / Região (Foz do Iguaçu)
+            <select id="custNeighborhood"></select>
+          </label>
+          <label>
+            Rua, Número e Complemento
+            <input type="text" id="custAddress" placeholder="Ex: Rua Marechal Deodoro, 850" required />
+          </label>
+        </div>
+        <button type="submit" class="btn-eco" style="background:#0284c7;">Salvar Cadastro / Atualizar Endereço</button>
+      </form>
+      <div id="customerProfileFeedback" class="msg-box hidden"></div>
+    </section>
+
+    <section class="panel-box">
+      <h2>2. Mapa em Tempo Real (Satélite / Ciclovias)</h2>
+      <div id="clientMap" style="height: 220px; border-radius: 10px; border: 1px solid #1e293b;"></div>
+    </section>
+
+    <section class="panel-box">
+      <h2>3. Fazer Pedido Leve (Até 8,0 kg • Raio Máx. 4,5 km)</h2>
+      <form id="clientOrderForm">
+        <label>
+          Estabelecimento Parceiro Aprovado
+          <select id="clientMerchant"></select>
+        </label>
+
+        <div id="merchantCatalogBox" style="background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:10px; margin:10px 0;">
+          <strong style="display:block; margin-bottom:6px; font-size:0.9rem;">Produtos Leves Disponíveis na Loja:</strong>
+          <div id="productChecklist" style="display:flex; flex-direction:column; gap:6px; font-size:0.88rem;">
+            Carregando catálogo da loja...
+          </div>
+        </div>
+
+        <div id="orderQuotePreview" style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.88rem;">
+          Selecione ao menos um produto para calcular peso, distância bike e frete.
+        </div>
+
+        <button type="submit" id="submitClientOrderBtn" class="btn-eco">Confirmar Pedido e Chamar Ciclista</button>
+      </form>
+      <div id="clientFeedback" class="msg-box hidden"></div>
+    </section>
+
+    <section class="panel-box">
+      <h2>4. Meus Pedidos & Acompanhamento das 4 Etapas</h2>
+      <div id="clientOrdersList" class="orders-stack">Carregando meus pedidos...</div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/cliente/src/services/clientApp.js"></script>
+</body>
+</html>

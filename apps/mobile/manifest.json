@@ -1,0 +1,9 @@
+{
+  "name": "BikApp Entregador",
+  "short_name": "BikApp Bike",
+  "start_url": "/app",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#22c55e",
+  "description": "Aplicativo exclusivo para entregadores de bicicleta — cargas leves, pagamento justo e ranking semanal."
+}

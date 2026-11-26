@@ -1,0 +1,38 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente e segredos
+.env
+.env.local
+.env.*.local
+
+# Builds e caches
+dist/
+build/
+.expo/
+.next/
+coverage/
+
+# Bancos de dados locais de teste (SQLite)
+*.sqlite
+*.db
+
+# Sistema Operacional e IDE
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+# Dependencias e ambiente local
+node_modules/
+.env
+
+# Artefatos temporarios do Playwright
+test-results/
+playwright-report/
+blob-report/
+
+# Backups locais gerados durante testes
+apps/backend/data/backups/
+
+# Documentacao interna local
+docs/

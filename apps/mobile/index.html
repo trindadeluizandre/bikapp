@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>BikApp — App do Entregador Bike</title>
+  <link rel="manifest" href="/app/manifest.json" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/app/src/styles/courier.css" />
+</head>
+
+<body>
+  <header class="mobile-header">
+    <div>
+      <span class="pill-bike">MODAL BIKE • ROTA SEGURA</span>
+      <h1 id="courierName">André Luiz Trindade</h1>
+      <small id="courierCity">Foz do Iguaçu</small>
+    </div>
+    <div class="score-box">
+      <span>PONTOS</span>
+      <strong id="courierPoints">0</strong>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="ordersTab">Entregas</button>
+    <button class="tab-btn" data-tab="financeTab">Financeiro</button>
+    <button class="tab-btn" data-tab="rankingTab">Ranking</button>
+    <button class="tab-btn" data-tab="profileTab">Cadastro / Pix</button>
+  </nav>
+
+  <main id="ordersTab" class="tab-content active">
+    <div class="status-banner" style="flex-wrap: wrap; gap: 6px;">
+      <span>Status: <strong id="courierStatusLabel">ONLINE / DISPONÍVEL</strong></span>
+      <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <button id="toggleOnlineBtn" class="btn-mini"
+          style="background: #14532d; border-color: #22c55e; color: #86efac; font-weight: 700;">Ficar Offline</button>
+        <button id="gpsBtn" class="btn-mini">Enviar GPS</button>
+        <button id="autoGpsBtn" class="btn-mini">GPS Auto: OFF</button>
+        <button id="reloadBtn" class="btn-mini">Atualizar</button>
+      </div>
+    </div>
+
+    <div class="map-wrapper">
+      <div id="courierMap" style="height: 230px; border-radius: 10px; border: 1px solid #1f2937;"></div>
+      <button type="button" id="sosBtn" class="map-float-btn map-sos-btn">SOS Seguro</button>
+      <button type="button" id="centerGpsBtn" class="map-float-btn map-center-btn">Centralizar GPS</button>
+    </div>
+
+    <div id="sosModal" class="sos-modal-box hidden"></div>
+
+    <div id="availableOrders" class="cards-stack">Carregando entregas...</div>
+  </main>
+
+  <main id="financeTab" class="tab-content">
+    <div class="finance-summary-card">
+      <div class="finance-header-row">
+        <div>
+          <span class="finance-subtitle">Ganhos Líquidos (100% Repasse Ponta 1)</span>
+          <strong id="finNetEarnings" class="finance-big-value">R$ 0,00</strong>
+        </div>
+        <button type="button" id="toggleFinancePrivacyBtn" class="btn-mini">Ocultar</button>
+      </div>
+      <div class="finance-subgrid">
+        <div class="finance-mini-box">
+          <span>Entregas Concluídas</span>
+          <strong id="finDeliveriesCount">0</strong>
+        </div>
+        <div class="finance-mini-box">
+          <span>Prêmios Ranking Pix</span>
+          <strong id="finPixPrizes">R$ 0,00</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="finance-filter-bar">
+      <button type="button" class="fin-period-btn active" data-period="7D">Últimos 7 dias</button>
+      <button type="button" class="fin-period-btn" data-period="TODAY">Hoje</button>
+      <button type="button" class="fin-period-btn" data-period="ALL">Todo período</button>
+    </div>
+
+    <div id="routeDetailModal" class="route-detail-box hidden"></div>
+
+    <h3 class="finance-section-title">Extrato de Lançamentos (Toque na rota para ver horários)</h3>
+    <div id="financeStatementList" class="cards-stack">Carregando extrato...</div>
+  </main>
+
+  <main id="rankingTab" class="tab-content">
+    <div class="pool-banner">
+      <span>Fundo Semanal Acumulado na Praça:</span>
+      <strong id="mobileRankingPool">R$ 0,00</strong>
+    </div>
+    <div id="mobileRankingList" class="ranking-stack">Carregando ranking...</div>
+  </main>
+
+  <main id="profileTab" class="tab-content">
+    <div class="delivery-card">
+      <h2 style="font-size: 1rem; margin-bottom: 8px;">Perfil do Ciclista & Chave Pix (Premiação Semanal)</h2>
+      <label style="display: block; margin-bottom: 10px; font-size: 0.85rem;">
+        Ciclista Ativo (Trocar Perfil ou Cadastrar Novo)
+        <select id="courierSelector"
+          style="width: 100%; padding: 8px; margin-top: 4px; border-radius: 6px; background: #0f172a; color: #f8fafc; border: 1px solid #334155;"></select>
+      </label>
+
+      <form id="courierProfileForm" style="display: flex; flex-direction: column; gap: 8px;">
+        <label style="font-size: 0.85rem;">
+          Nome Completo do Ciclista
+          <input type="text" id="cName" required
+            style="width: 100%; padding: 8px; margin-top: 4px; border-radius: 6px; background: #0f172a; color: #f8fafc; border: 1px solid #334155;" />
+        </label>
+        <label style="font-size: 0.85rem;">
+          Telefone / WhatsApp
+          <input type="text" id="cPhone" placeholder="(45) 99999-0000"
+            style="width: 100%; padding: 8px; margin-top: 4px; border-radius: 6px; background: #0f172a; color: #f8fafc; border: 1px solid #334155;" />
+        </label>
+        <label style="font-size: 0.85rem;">
+          Chave Pix (CPF, E-mail, Celular ou Aleatória)
+          <input type="text" id="cPixKey" placeholder="Informe sua chave Pix para receber prêmios" required
+            style="width: 100%; padding: 8px; margin-top: 4px; border-radius: 6px; background: #0f172a; color: #f8fafc; border: 1px solid #334155;" />
+        </label>
+        <button type="submit" class="btn-accept">Salvar Cadastro e Chave Pix</button>
+      </form>
+      <div id="courierProfileFeedback" style="margin-top: 8px; font-size: 0.85rem; color: #34d399;"></div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/app/src/services/courierApp.js"></script>
+</body>
+
+</html>

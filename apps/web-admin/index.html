@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BikApp Admin — Controle Central, Governança e Fechamento Pix</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/admin/src/styles/admin.css" />
+</head>
+
+<body>
+  <header class="admin-top" style="flex-wrap: wrap; gap: 10px;">
+    <div>
+      <h1>BikApp — Painel Administrativo Central</h1>
+      <p>Controle das 3 Pontas, Governança da Cadeia, Fechamento Semanal Pix e Backup em <strong id="adminCity">Foz do
+          Iguaçu</strong></p>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button id="backupBtn" class="btn-gold" style="background: #0284c7; color: #f8fafc;">Fazer Backup Agora</button>
+      <button id="closeWeekBtn" class="btn-gold">Fechar Ranking Semanal (Gerar Lote Pix)</button>
+      <button id="resetDevBtn" class="btn-gold" style="background: #991b1b; color: #fecaca;">Limpar Dados de
+        Teste</button>
+    </div>
+  </header>
+
+  <div id="adminActionFeedback" style="margin: 0 20px 10px 20px; color: #34d399; font-weight: 600;"></div>
+
+  <main class="admin-grid">
+    <section class="kpi-card">
+      <span>Caixa Operacional BikApp (R$ 0,80/entrega)</span>
+      <strong id="admOps">R$ 0,00</strong>
+    </section>
+    <section class="kpi-card">
+      <span>Fundo Ranking Semanal (R$ 0,65/entrega)</span>
+      <strong id="admRankingPool">R$ 0,00</strong>
+    </section>
+    <section class="kpi-card">
+      <span>Fundo Seguro em Rota (R$ 0,35/entrega)</span>
+      <strong id="admInsurance">R$ 0,00</strong>
+    </section>
+    <section class="kpi-card">
+      <span>Cadeia Ativa (Pedidos / Lojas / Bikes / Clientes)</span>
+      <strong id="admOrdersCount">0</strong>
+    </section>
+
+    <section class="admin-panel span-2">
+      <h2>Mapa Geral da Praça em Tempo Real — Foz do Iguaçu (Satélite / Urbano)</h2>
+      <div id="adminMap" style="height: 280px; border-radius: 8px; border: 1px solid #1f2937;"></div>
+    </section>
+
+    <section class="admin-panel span-2">
+      <h2>Fechamento Semanal de Prêmios (Top 20 via Pix & Baixa de Pagamento)</h2>
+      <div id="payoutBatchBox" class="batch-box">Nenhum fechamento semanal executado ainda.</div>
+    </section>
+
+    <section class="admin-panel span-2">
+      <h2>Governança: Estabelecimentos Parceiros (Lojistas)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Estabelecimento</th>
+            <th>CNPJ / CPF</th>
+            <th>Segmento</th>
+            <th>Endereço</th>
+            <th>Status</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="adminMerchantsBody"></tbody>
+      </table>
+    </section>
+
+    <section class="admin-panel span-2">
+      <div
+        style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+        <h2 style="margin: 0;">Governança: Ciclistas Cadastrados & Chaves Pix</h2>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <input id="courierSearchInput" type="search" placeholder="Buscar nome, telefone ou Pix..."
+            style="padding: 6px 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #f8fafc;" />
+          <select id="courierStatusFilter"
+            style="padding: 6px 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #f8fafc;">
+            <option value="ALL">Todos os Status</option>
+            <option value="APROVADO">Aprovados</option>
+            <option value="SUSPENSO">Suspensos</option>
+          </select>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Ciclista</th>
+            <th>Telefone</th>
+            <th>Chave Pix</th>
+            <th>Entregas</th>
+            <th>Status</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="adminCouriersBody"></tbody>
+      </table>
+      <div id="couriersPagination"
+        style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap; gap: 8px;">
+      </div>
+    </section>
+
+    <section class="admin-panel span-2">
+      <div
+        style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+        <h2 style="margin: 0;">Clientes Cadastrados no App BikApp</h2>
+        <input id="customerSearchInput" type="search" placeholder="Buscar cliente, bairro ou rua..."
+          style="padding: 6px 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #f8fafc; min-width: 240px;" />
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Bairro</th>
+            <th>Endereço</th>
+          </tr>
+        </thead>
+        <tbody id="adminCustomersBody"></tbody>
+      </table>
+      <div id="customersPagination"
+        style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap; gap: 8px;">
+      </div>
+    </section>
+
+    <section class="admin-panel span-2">
+      <h2 style="margin-bottom: 10px;">Classificação da Praça (Top 50)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ciclista</th>
+            <th>Entregas</th>
+            <th>Pontos</th>
+            <th>Repasse Semanal Estimado (Pix)</th>
+          </tr>
+        </thead>
+        <tbody id="adminRankingBody"></tbody>
+      </table>
+      <div id="rankingPagination"
+        style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap; gap: 8px;">
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/admin/src/services/adminApp.js"></script>
+</body>
+
+</html>

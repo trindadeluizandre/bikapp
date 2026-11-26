@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BikApp — Painel Web do Lojista (Foz do Iguaçu)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/src/styles/panel.css" />
+  <style>
+    .merchant-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .m-tab-btn {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .m-tab-btn.active {
+      background: #10b981;
+      color: #06281e;
+      border-color: #10b981;
+    }
+
+    .m-tab-panel {
+      display: none;
+    }
+
+    .m-tab-panel.active {
+      display: block;
+    }
+
+    .status-pill-ok {
+      color: #34d399;
+      font-weight: 700;
+    }
+
+    .status-pill-warn {
+      color: #fbbf24;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div>
+      <h1>BikApp — Painel do Estabelecimento Parceiro</h1>
+      <p>Praça: <strong id="cityLabel">Foz do Iguaçu</strong> | <strong id="activeMerchantHeader">Carregando
+          loja...</strong></p>
+    </div>
+    <div class="funds-bar">
+      <div class="fund-card">
+        <span>Pedidos App BikApp</span>
+        <strong id="kpiAppOrders">0</strong>
+      </div>
+      <div class="fund-card">
+        <span>Pedidos Próprios / Balcão</span>
+        <strong id="kpiOwnOrders">0</strong>
+      </div>
+      <div class="fund-card">
+        <span>Comissão s/ Produto</span>
+        <strong>0,00%</strong>
+      </div>
+      <div class="fund-card">
+        <span>Status Operacional</span>
+        <strong id="kpiMerchantStatus">-</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid-container">
+    <section class="card">
+      <h2>1. Cadastro & Perfil da Empresa</h2>
+      <label>
+        Estabelecimento Ativo (Selecionar ou Cadastrar Novo)
+        <select id="merchantSelector"></select>
+      </label>
+
+      <form id="merchantForm" style="margin-top: 10px;">
+        <label>
+          Nome Fantasia do Estabelecimento
+          <input type="text" id="mName" placeholder="Ex: Farmácia Central — Centro" required />
+        </label>
+
+        <div class="row-2">
+          <label>
+            CNPJ ou CPF do Responsável
+            <input type="text" id="mDoc" placeholder="00.000.000/0001-00" required />
+          </label>
+          <label>
+            Segmento Principal
+            <select id="mCategory">
+              <option value="FARMACIA_LEVE">Farmácia Leve (Medicamentos / Higiene)</option>
+              <option value="FAST_FOOD_COMPACTO">Fast-Food Compacto (Lanches / Combos)</option>
+              <option value="CONVENIENCIA_LEVE">Conveniência Leve</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row-2">
+          <label>
+            Bairro em Foz do Iguaçu
+            <select id="mNeighborhood"></select>
+          </label>
+          <label>
+            Endereço Completo da Coleta
+            <input type="text" id="mAddress" placeholder="Av. Jorge Schimmelpfeng, 450" required />
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary">Salvar Cadastro da Empresa</button>
+      </form>
+      <div id="merchantFeedback" class="feedback hidden"></div>
+    </section>
+
+    <section class="card">
+      <h2>2. Catálogo de Produtos Leves (Visível no App Cliente)</h2>
+      <form id="productForm">
+        <div class="row-2">
+          <label>
+            Nome do Produto / Combo Leve
+            <input type="text" id="prodName" placeholder="Ex: Kit Gripe + Vitamina C" required />
+          </label>
+          <label>
+            Categoria
+            <select id="prodCategory">
+              <option value="FARMACIA_LEVE">Farmácia Leve</option>
+              <option value="FAST_FOOD_COMPACTO">Fast-Food Compacto</option>
+              <option value="CONVENIENCIA_LEVE">Conveniência Leve</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row-2">
+          <label>
+            Peso Estimado (kg) — Máx: 8.0 kg
+            <input type="number" id="prodWeight" step="0.1" min="0.1" max="8.0" value="0.5" required />
+          </label>
+          <label>
+            Preço de Venda (R$)
+            <input type="number" id="prodPrice" step="0.01" min="1" value="35.00" required />
+          </label>
+        </div>
+
+        <button type="submit" class="btn-secondary">Adicionar Produto ao Catálogo</button>
+      </form>
+      <div id="productFeedback" class="feedback hidden"></div>
+
+      <div id="merchantProductsList" class="list-box" style="margin-top: 12px; max-height: 210px; overflow-y: auto;">
+        Carregando produtos...
+      </div>
+    </section>
+
+    <section class="card full-width">
+      <div class="merchant-tabs">
+        <button type="button" class="m-tab-btn active" data-mtab="tabAppOrders">
+          Aba 1: Pedidos do App BikApp
+        </button>
+        <button type="button" class="m-tab-btn" data-mtab="tabOwnOrders">
+          Aba 2: Pedidos Próprios / Balcão
+        </button>
+        <button type="button" class="m-tab-btn" data-mtab="tabLiveTracking">
+          Aba 3: Monitoramento Ao Vivo (Cliente + Ciclista)
+        </button>
+      </div>
+
+      <div id="tabAppOrders" class="m-tab-panel active">
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;">
+          <h2 style="margin: 0;">Pedidos Recebidos pelo App do Cliente BikApp</h2>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <input id="appOrdersSearchInput" type="search" placeholder="Buscar cliente, pedido ou item..."
+              style="padding: 6px 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #f8fafc;" />
+            <select id="appOrdersStatusFilter"
+              style="padding: 6px 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #f8fafc;">
+              <option value="ALL">Todos os Pedidos</option>
+              <option value="PENDING">Aguardando Loja</option>
+              <option value="ACTIVE">Em Andamento / Rota</option>
+              <option value="DONE">Concluídos</option>
+            </select>
+          </div>
+        </div>
+        <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 10px;">
+          Pedidos enviados diretamente pelos consumidores em Foz do Iguaçu. Pedidos aguardando confirmação aparecem
+          sempre no
+          topo.
+        </p>
+        <div id="appOrdersList" class="list-box">Carregando pedidos do App BikApp...</div>
+        <div id="appOrdersPagination"
+          style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap; gap: 8px;">
+        </div>
+      </div>
+
+      <div id="tabOwnOrders" class="m-tab-panel">
+        <h2>Solicitar Ciclista para Pedido Próprio (Balcão / Telefone / WhatsApp)</h2>
+        <form id="ownOrderForm" style="margin-bottom: 14px;">
+          <div class="row-2">
+            <label>
+              Nome do Cliente Destinatário
+              <input type="text" id="ownCustName" value="Cliente Balcão" required />
+            </label>
+            <label>
+              Bairro de Destino (Foz do Iguaçu)
+              <select id="ownDropoffNeighborhood"></select>
+            </label>
+          </div>
+
+          <div class="row-2">
+            <label>
+              Endereço de Entrega
+              <input type="text" id="ownCustAddress" placeholder="Rua Tarobá, 620 — Centro" required />
+            </label>
+            <label>
+              Resumo dos Itens Leves
+              <input type="text" id="ownItems" value="1x Pedido Rápido Balcão (Leve)" required />
+            </label>
+          </div>
+
+          <div class="row-3">
+            <label>
+              Categoria da Carga
+              <select id="ownCategory">
+                <option value="FARMACIA_LEVE">Farmácia Leve</option>
+                <option value="FAST_FOOD_COMPACTO">Fast-Food Compacto</option>
+                <option value="CONVENIENCIA_LEVE">Conveniência Leve</option>
+                <option value="CARGA_PESADA_BLOQUEADA">Teste Bloqueio: Carga Pesada</option>
+              </select>
+            </label>
+            <label>
+              Distância Bike (km) — Deixe vazio p/ Auto
+              <input type="number" id="ownDistanceKm" step="0.1" placeholder="Automático por bairro" />
+            </label>
+            <label>
+              Peso Estimado (kg) — Máx: 8.0 kg
+              <input type="number" id="ownWeightKg" step="0.1" value="1.0" required />
+            </label>
+          </div>
+
+          <div class="row-3">
+            <label>
+              Paradas Extras na Rota
+              <input type="number" id="ownAdditionalStops" min="0" max="2" value="0" />
+            </label>
+            <label>
+              Espera Prévia na Loja (min)
+              <input type="number" id="ownWaitMinutes" min="0" value="0" />
+            </label>
+            <label>
+              Valor dos Produtos (R$) — 0% Comissão
+              <input type="number" id="ownOrderValue" step="0.01" value="48.00" />
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary">Cotar Frete Bike e Chamar Ciclista</button>
+        </form>
+        <div id="ownOrderFeedback" class="feedback hidden"></div>
+
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 14px; margin-bottom: 8px;">
+          <h3 style="margin: 0;">Histórico de Entregas Próprias da Loja</h3>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <input id="ownOrdersSearchInput" type="search" placeholder="Buscar cliente ou endereço..."
+              style="padding: 6px 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #f8fafc;" />
+            <select id="ownOrdersStatusFilter"
+              style="padding: 6px 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #f8fafc;">
+              <option value="ALL">Todos</option>
+              <option value="ACTIVE">Em Andamento / Rota</option>
+              <option value="DONE">Concluídos</option>
+            </select>
+          </div>
+        </div>
+        <div id="ownOrdersList" class="list-box">Carregando pedidos próprios...</div>
+        <div id="ownOrdersPagination"
+          style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap; gap: 8px;">
+        </div>
+      </div>
+
+      <div id="tabLiveTracking" class="m-tab-panel">
+        <h2>Rastreamento Satélite em Tempo Real (Loja, Cliente e Ciclista)</h2>
+        <div id="lojistaMap" style="height: 300px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 12px;">
+        </div>
+        <div id="liveTelemetryList" class="list-box">Carregando telemetria das corridas ativas...</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/src/services/panelApp.js"></script>
+</body>
+
+</html>
