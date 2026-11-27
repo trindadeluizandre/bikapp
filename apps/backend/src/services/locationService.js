@@ -30,9 +30,9 @@ function estimateBikeDistanceKm(originCoords, destCoords) {
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(toRad(Number(originCoords.lat))) *
-      Math.cos(toRad(Number(destCoords.lat))) *
-      Math.sin(dLng / 2) *
-      Math.sin(dLng / 2);
+    Math.cos(toRad(Number(destCoords.lat))) *
+    Math.sin(dLng / 2) *
+    Math.sin(dLng / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const straightKm = R * c;
   // Fator urbano de ciclovia/ruas em Foz do Iguaçu (1.28x linha reta, mínimo 0.8 km)
@@ -88,37 +88,51 @@ function getLiveMapSnapshot() {
     store.liveLocations.length > 0
       ? store.liveLocations
       : [
-          {
-            courierId: 'bike-andre',
-            name: 'André Luiz Trindade',
-            lat: DEFAULT_FOZ_CENTER.lat,
-            lng: DEFAULT_FOZ_CENTER.lng,
-            accuracy: null,
-            activeOrderId: null,
-            updatedAt: new Date().toISOString(),
-          },
-        ];
+        {
+          courierId: 'bike-andre',
+          name: 'André Luiz Trindade',
+          lat: DEFAULT_FOZ_CENTER.lat,
+          lng: DEFAULT_FOZ_CENTER.lng,
+          accuracy: null,
+          activeOrderId: null,
+          updatedAt: new Date().toISOString(),
+        },
+      ];
 
   const activeOrders = (store.orders || []).map((order, index) => {
     const fallbackOffsetLat = (index % 5) * 0.002 - 0.004;
     const fallbackOffsetLng = ((index % 4) - 1.5) * 0.002;
 
+    const merchant = (store.merchants || []).find((m) => m.id === order.merchantId);
+    const customer = (store.customers || []).find((c) => c.id === order.customerId);
+
     const pickupCoords = order.pickupCoords || {
-      lat: Number((DEFAULT_FOZ_CENTER.lat + fallbackOffsetLat).toFixed(6)),
-      lng: Number((DEFAULT_FOZ_CENTER.lng + fallbackOffsetLng).toFixed(6)),
+      lat: Number((merchant?.lat ?? DEFAULT_FOZ_CENTER.lat + fallbackOffsetLat).toFixed(6)),
+      lng: Number((merchant?.lng ?? DEFAULT_FOZ_CENTER.lng + fallbackOffsetLng).toFixed(6)),
     };
 
     const dropoffCoords = order.dropoffCoords || {
-      lat: Number((pickupCoords.lat + 0.006).toFixed(6)),
-      lng: Number((pickupCoords.lng + 0.005).toFixed(6)),
+      lat: Number((customer?.lat ?? pickupCoords.lat + 0.006).toFixed(6)),
+      lng: Number((customer?.lng ?? pickupCoords.lng + 0.005).toFixed(6)),
     };
+
+    const pickupNbCode = String(order.pickupNeighborhood || merchant?.neighborhood || '').toUpperCase();
+    const dropoffNbCode = String(order.dropoffNeighborhood || customer?.neighborhood || '').toUpperCase();
 
     return {
       id: order.id,
       merchantId: order.merchantId || null,
-      merchantName: order.merchantName,
+      merchantName: order.merchantName || merchant?.name || 'Estabelecimento',
+      pickupAddress: order.pickupAddress || merchant?.address || '',
+      pickupNeighborhood: FOZ_NEIGHBORHOODS[pickupNbCode]?.label || '',
       customerId: order.customerId || null,
-      customerName: order.customerName || 'Cliente',
+      customerName: order.customerName || customer?.name || 'Cliente',
+      dropoffAddress: order.customerAddress || customer?.address || '',
+      dropoffNeighborhood: FOZ_NEIGHBORHOODS[dropoffNbCode]?.label || '',
+      pickupCode: order.pickupCode || null,
+      distanceKm: order.distanceKm || 1.5,
+      weightKg: order.weightKg || 0.5,
+      itemsSummary: order.itemsSummary || order.category,
       originChannel: order.originChannel || 'BALCAO_LOJISTA',
       category: order.category,
       status: order.status,

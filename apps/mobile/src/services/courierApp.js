@@ -7,11 +7,24 @@ let cachedBatchesList = [];
 let latestMapSnapshot = null;
 let mapInstance = null;
 let markersLayer = null;
+let openMapPopupKey = null;
 let autoGpsWatchId = null;
 let isCourierFormDirty = false;
 let hasHydratedCourierForm = false;
 let hideFinanceValues = false;
 let financePeriodFilter = '7D';
+
+function getFirstName(fullName) {
+  const clean = String(fullName || 'Cliente').trim();
+  return clean.split(/\s+/)[0] || 'Cliente';
+}
+
+function formatStreetAndNeighborhood(streetAddress, neighborhoodLabel) {
+  const street = String(streetAddress || '').trim();
+  const nb = String(neighborhoodLabel || '').trim();
+  if (street && nb) return `${street} — ${nb}`;
+  return street || nb || 'Foz do Iguaçu';
+}
 
 function brl(v) {
   return Number(v || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -97,19 +110,49 @@ function initCourierMap() {
   markersLayer = L.layerGroup().addTo(mapInstance);
 }
 
+function attachPersistentPopup(layer, popupKey, htmlContent) {
+  layer.bindPopup(htmlContent, {
+    closeButton: true,
+    autoClose: true,
+    closeOnClick: false,
+    maxWidth: 270,
+  });
+
+  layer.on('popupopen', () => {
+    openMapPopupKey = popupKey;
+  });
+
+  layer.on('popupclose', () => {
+    if (openMapPopupKey === popupKey) {
+      openMapPopupKey = null;
+    }
+  });
+
+  layer.addTo(markersLayer);
+
+  if (openMapPopupKey === popupKey) {
+    layer.openPopup();
+  }
+}
+
 function renderMapMarkers(snapshot) {
   if (!mapInstance || !markersLayer) return;
+  const previousPopupKey = openMapPopupKey;
   markersLayer.clearLayers();
+  openMapPopupKey = previousPopupKey;
 
   (snapshot.couriers || []).forEach((c) => {
-    L.circleMarker([c.lat, c.lng], {
+    const marker = L.circleMarker([c.lat, c.lng], {
       radius: 8,
       color: '#22c55e',
       fillColor: '#4ade80',
       fillOpacity: 0.9,
-    })
-      .bindPopup(`<strong>${c.name}</strong><br/>Ciclista em rota ativa`)
-      .addTo(markersLayer);
+    });
+    attachPersistentPopup(
+      marker,
+      `courier-${c.courierId}`,
+      `<strong>${c.name}</strong><br/>Posição GPS ativa (Precisão: ${c.accuracy ? `${Math.round(c.accuracy)}m` : 'OK'})`
+    );
   });
 
   const activeProfileForMap = couriersList.find((c) => c.id === activeCourierId);
@@ -128,20 +171,46 @@ function renderMapMarkers(snapshot) {
       return isMineActive || isOpenForMe;
     })
     .forEach((o) => {
+      const clientFirstName = getFirstName(o.customerName);
+      const pickupFull = formatStreetAndNeighborhood(o.pickupAddress, o.pickupNeighborhood);
+      const dropoffFull = formatStreetAndNeighborhood(o.dropoffAddress, o.dropoffNeighborhood);
+      const codeLine = o.pickupCode ? `<span>Senha Coleta: <strong>${o.pickupCode}</strong></span><br/>` : '';
+
       if (o.pickupCoords) {
-        L.marker([o.pickupCoords.lat, o.pickupCoords.lng])
-          .bindPopup(`Coleta: <strong>${o.merchantName}</strong><br/>Ganho: ${brl(o.payoutBRL)}`)
-          .addTo(markersLayer);
+        const gmapsPickup = `https://www.google.com/maps/dir/?api=1&destination=${o.pickupCoords.lat},${o.pickupCoords.lng}&travelmode=bicycling`;
+        const pickupHtml = `
+          <div style="font-size:0.82rem; line-height:1.4; color:#0f172a;">
+            <strong>Coleta: ${o.merchantName}</strong><br/>
+            <span>Local: ${pickupFull}</span><br/>
+            ${codeLine}
+            <hr style="margin:4px 0; border:none; border-top:1px solid #cbd5e1;"/>
+            <span>Cliente: <strong>${clientFirstName}</strong></span><br/>
+            <span>Entrega: ${dropoffFull}</span><br/>
+            <span>Ganho: <strong>${brl(o.payoutBRL)}</strong> (${o.distanceKm || '-'} km • ${o.weightKg || '-'} kg)</span><br/>
+            <a href="${gmapsPickup}" target="_blank" rel="noopener" style="display:inline-block; margin-top:5px; color:#0284c7; font-weight:700; text-decoration:underline;">Abrir Rota Coleta no GPS</a>
+          </div>
+        `;
+        const pickupMarker = L.marker([o.pickupCoords.lat, o.pickupCoords.lng]);
+        attachPersistentPopup(pickupMarker, `pickup-${o.id}`, pickupHtml);
       }
+
       if (o.dropoffCoords) {
-        L.circleMarker([o.dropoffCoords.lat, o.dropoffCoords.lng], {
+        const gmapsDropoff = `https://www.google.com/maps/dir/?api=1&destination=${o.dropoffCoords.lat},${o.dropoffCoords.lng}&travelmode=bicycling`;
+        const dropoffHtml = `
+          <div style="font-size:0.82rem; line-height:1.4; color:#0f172a;">
+            <strong>Entrega: ${clientFirstName}</strong><br/>
+            <span>Endereço: ${dropoffFull}</span><br/>
+            <span>Ganho: <strong>${brl(o.payoutBRL)}</strong></span><br/>
+            <a href="${gmapsDropoff}" target="_blank" rel="noopener" style="display:inline-block; margin-top:5px; color:#0284c7; font-weight:700; text-decoration:underline;">Abrir Rota Cliente no GPS</a>
+          </div>
+        `;
+        const dropoffMarker = L.circleMarker([o.dropoffCoords.lat, o.dropoffCoords.lng], {
           radius: 7,
           color: '#38bdf8',
           fillColor: '#0284c7',
           fillOpacity: 0.9,
-        })
-          .bindPopup(`Entrega: <strong>${o.customerName}</strong>`)
-          .addTo(markersLayer);
+        });
+        attachPersistentPopup(dropoffMarker, `dropoff-${o.id}`, dropoffHtml);
       }
     });
 }
@@ -320,6 +389,21 @@ async function loadMobileData(isBackgroundPoll = false) {
           </div>`;
         }
 
+        const notReadyBtnHtml =
+          o.status === 'NO_LOCAL_COLETA' && !o.falseReadyReported
+            ? `<button type="button" class="btn-decline" style="width:100%; margin-top:6px; background:#7f1d1d; color:#fecaca;" onclick="reportOrderNotReady('${o.id}')">Loja Atrasou / Produto Não Está Pronto (Cobrar Espera Imediata)</button>`
+            : o.falseReadyReported
+              ? `<div style="margin-top:6px; padding:6px; border-radius:6px; background:#450a0a; color:#fca5a5; font-size:0.82rem;"><strong>Falso Pronto Reportado:</strong> Carência de 5 min anulada. Tempo integral cobrado da loja.</div>`
+              : '';
+
+        const deliveryPinInputHtml =
+          action && action.isComplete && o.deliveryPin
+            ? `<div style="margin-top:8px; display:flex; gap:6px; align-items:center;">
+                 <input type="tel" id="pinInput-${o.id}" maxlength="4" placeholder="4 dígitos CPF" style="width:130px; padding:9px; border-radius:8px; border:1px solid #38bdf8; background:#0f172a; color:#f8fafc; font-weight:700; text-align:center;" />
+                 <button type="button" class="btn-accept" style="flex:1; margin-top:0;" onclick="finishDelivery('${o.id}', true)">${action.label}</button>
+               </div>`
+            : '';
+
         const actionButtonsHtml =
           action && !isMyOwnIncident
             ? o.status === 'AGUARDANDO_CICLISTA'
@@ -328,9 +412,16 @@ async function loadMobileData(isBackgroundPoll = false) {
                    <button type="button" class="btn-accept" onclick="advanceStage('${o.id}', '${action.nextStage}')">${action.label}</button>
                  </div>`
               : action.isComplete
-                ? `<button type="button" class="btn-accept" onclick="finishDelivery('${o.id}')">${action.label}</button>`
-                : `<button type="button" class="btn-accept" style="${isRescue ? 'background:#f59e0b; color:#1c1917;' : ''}" onclick="advanceStage('${o.id}', '${action.nextStage}')">${action.label}</button>`
+                ? deliveryPinInputHtml || `<button type="button" class="btn-accept" onclick="finishDelivery('${o.id}', false)">${action.label}</button>`
+                : `<button type="button" class="btn-accept" style="${isRescue ? 'background:#f59e0b; color:#1c1917;' : ''}" onclick="advanceStage('${o.id}', '${action.nextStage}')">${action.label}</button>${notReadyBtnHtml}`
             : '';
+
+        const snapOrder = (latestMapSnapshot?.orders || []).find((s) => s.id === o.id);
+        const pickupFullLine = formatStreetAndNeighborhood(o.pickupAddress || snapOrder?.pickupAddress, snapOrder?.pickupNeighborhood);
+        const dropoffFullLine = formatStreetAndNeighborhood(o.customerAddress || snapOrder?.dropoffAddress, snapOrder?.dropoffNeighborhood);
+        const pickupCodeLine = o.pickupCode
+          ? `<div style="margin-top:4px; padding:4px 8px; border-radius:6px; background:#0f172a; border:1px solid #38bdf8; color:#bae6fd;">Senha de Coleta no Balcão: <strong style="font-size:1rem; color:#38bdf8;">${o.pickupCode}</strong></div>`
+          : '';
 
         return `
           <div class="delivery-card ${isRescue ? 'rescue-card-highlight' : ''}">
@@ -342,9 +433,11 @@ async function loadMobileData(isBackgroundPoll = false) {
             <div class="delivery-info">
               Etapa: <strong>${formatStageHuman(o.status)}</strong><br/>
               Trajeto Bike: <strong>${distKm} km • ~${estMinutes} min • ${totalStops} paradas</strong> | Peso: <strong>${o.weightKg || '-'} kg</strong><br/>
-              Origem: <strong>${o.originChannel === 'APP_CLIENTE' ? 'App Cliente' : 'Balcão Loja'}</strong> | Cliente: <strong>${o.customerName || 'Cliente'}</strong><br/>
-              Endereço Entrega: ${o.customerAddress || 'Foz do Iguaçu'}<br/>
+              Origem: <strong>${o.originChannel === 'APP_CLIENTE' ? 'App Cliente' : 'Balcão Loja'}</strong> | Cliente: <strong>${getFirstName(o.customerName)}</strong><br/>
+              Endereço Coleta: <strong>${pickupFullLine}</strong><br/>
+              Endereço Entrega: <strong>${dropoffFullLine}</strong><br/>
               Itens: ${o.itemsSummary || o.category} • Seguro em rota: <strong>ATIVO</strong>
+              ${pickupCodeLine}
               ${waitBanner}
               ${rescueBanner}
             </div>
@@ -575,14 +668,38 @@ async function advanceStage(orderId, nextStage) {
   await loadMobileData();
 }
 
-async function finishDelivery(orderId) {
+async function reportOrderNotReady(orderId) {
+  const res = await fetch(`/api/orders/${orderId}/not-ready`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    alert(data.error || 'Não foi possível registrar atraso na loja.');
+    return;
+  }
+  await loadMobileData();
+}
+
+async function finishDelivery(orderId, requiresPin = false) {
   const activeProfile = couriersList.find((c) => c.id === activeCourierId);
+  let deliveryPin = '';
+  if (requiresPin) {
+    const inputEl = document.getElementById(`pinInput-${orderId}`);
+    deliveryPin = inputEl ? String(inputEl.value || '').trim() : '';
+    if (deliveryPin.length !== 4) {
+      alert('Digite os 4 últimos dígitos do CPF informados pelo cliente.');
+      return;
+    }
+  }
+
   const res = await fetch(`/api/orders/${orderId}/complete`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       courierId: activeCourierId,
       courierName: activeProfile?.name,
+      deliveryPin,
       onTime: true,
       fiveStar: false,
     }),

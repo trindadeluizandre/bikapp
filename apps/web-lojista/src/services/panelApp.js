@@ -137,11 +137,12 @@ function formatBRL(val) {
 
 function formatStageLabel(status) {
   const labels = {
-    AGUARDANDO_CONFIRMACAO_LOJA: 'Etapa 0/4: Confirmar Estoque e Iniciar Embalo',
+    AGUARDANDO_CONFIRMACAO_LOJA: 'Etapa 0/4: Confirmar Estoque e Iniciar Preparo',
+    EM_PREPARO_NA_LOJA: 'Preparando na Loja (Ciclista ainda não acionado)',
     RECUSADO_PELA_LOJA: 'Recusado pela Loja (Sem Estoque)',
-    AGUARDANDO_CICLISTA: 'Etapa 1/4: Embalando • Aguardando Ciclista Aceitar',
+    AGUARDANDO_CICLISTA: 'Etapa 1/4: Pedido Pronto no Balcão • Chamando Ciclista',
     ACEITO_PELO_CICLISTA: 'Etapa 2/4: Ciclista a Caminho da Loja',
-    NO_LOCAL_COLETA: 'Etapa 3/4: Ciclista na Loja (Aguardando Retirada)',
+    NO_LOCAL_COLETA: 'Etapa 3/4: Ciclista na Loja (Conferir Senha de Coleta)',
     INCIDENTE_EM_ROTA: 'Incidente em Rota • Suporte / Resgate Acionado',
     RESGATE_EM_ANDAMENTO: 'Ciclista de Resgate Coletando Pacote',
     EM_ROTA_ENTREGA: 'Etapa 4/4: Ciclista em Rota para o Cliente',
@@ -279,7 +280,21 @@ async function confirmStoreOrder(orderId) {
   });
   const data = await res.json();
   if (!res.ok) {
-    alert(data.error || 'Erro ao confirmar pedido na loja.');
+    alert(data.error || 'Erro ao iniciar preparo na loja.');
+    return;
+  }
+  await loadMerchantOrders();
+  initAndUpdateLojistaMap();
+}
+
+async function readyPickupOrder(orderId) {
+  const res = await fetch(`/api/orders/${orderId}/ready-pickup`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    alert(data.error || 'Erro ao marcar pedido como pronto.');
     return;
   }
   await loadMerchantOrders();
@@ -306,29 +321,48 @@ function renderOrderCard(o) {
   const p2 = o.pricing.ponta2_empresa;
   const isDone = o.status === 'CONCLUIDO';
   const needsConfirmation = o.status === 'AGUARDANDO_CONFIRMACAO_LOJA';
+  const isPreparing = o.status === 'EM_PREPARO_NA_LOJA';
   const ratingText =
     o.customerRating !== null && o.customerRating !== undefined
       ? ` | Avaliação Cliente: <strong>${o.customerRating}/5 estrelas</strong>`
       : '';
 
-  const storeActionsHtml = needsConfirmation
-    ? `<div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+  const pickupCodeBadge = o.pickupCode
+    ? ` | Senha Coleta Ciclista: <strong style="color:#38bdf8; font-size:0.95rem;">${o.pickupCode}</strong>`
+    : '';
+  const falseReadyAlert = o.falseReadyReported
+    ? `<div style="margin-top:6px; color:#fca5a5; font-size:0.83rem;"><strong>Alerta de Atraso na Coleta:</strong> Ciclista reportou que o pedido não estava pronto no balcão (carência de 5 min cancelada).</div>`
+    : '';
+
+  let storeActionsHtml = '';
+  if (needsConfirmation) {
+    storeActionsHtml = `<div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
          <button type="button" class="btn-primary" onclick="confirmStoreOrder('${o.id}')">
-           Confirmar Estoque e Iniciar Embalo (Chamar Ciclista)
+           1. Confirmar Estoque e Iniciar Preparo
          </button>
          <button type="button" class="btn-secondary" style="background: #991b1b; color: #fecaca;" onclick="rejectStoreOrder('${o.id}')">
            Recusar (Sem Estoque)
          </button>
-       </div>`
-    : '';
+       </div>`;
+  } else if (isPreparing) {
+    storeActionsHtml = `<div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+         <button type="button" class="btn-primary" style="background:#0284c7;" onclick="readyPickupOrder('${o.id}')">
+           2. Pedido Pronto no Balcão — Chamar Ciclista
+         </button>
+         <button type="button" class="btn-secondary" style="background: #991b1b; color: #fecaca;" onclick="rejectStoreOrder('${o.id}')">
+           Cancelar Antes do Chamado
+         </button>
+       </div>`;
+  }
 
   return `
-    <div class="order-item" style="${needsConfirmation ? 'border: 1px solid #f59e0b;' : ''}">
+    <div class="order-item" style="${needsConfirmation || isPreparing ? 'border: 1px solid #f59e0b;' : ''}">
       <div class="order-meta">
         <strong>Pedido ${o.id}</strong> — Cliente: <strong>${o.customerName || 'Cliente'}</strong> (${o.customerAddress || ''})<br/>
         Itens: ${o.itemsSummary || o.category} (${o.distanceKm || '-'} km • ${o.weightKg || '-'} kg)<br/>
-        Ciclista: <strong>${o.courierName || (needsConfirmation ? 'Aguardando confirmação da loja' : 'Aguardando aceite')}</strong> | Repasse Ciclista: <strong>${formatBRL(p1.totalPayout)}</strong> | Custo Logístico Loja: <strong>${formatBRL(p2.totalCost)}</strong> (0% comissão produto)<br/>
+        Ciclista: <strong>${o.courierName || (needsConfirmation || isPreparing ? 'Aguardando pedido ficar pronto no balcão' : 'Aguardando aceite')}</strong> | Repasse Ciclista: <strong>${formatBRL(p1.totalPayout)}</strong> | Custo Logístico Loja: <strong>${formatBRL(p2.totalCost)}</strong>${pickupCodeBadge}<br/>
         Andamento: <span class="badge ${isDone ? 'done' : 'wait'}">${formatStageLabel(o.status)}</span>${ratingText}
+        ${falseReadyAlert}
         ${storeActionsHtml}
       </div>
     </div>

@@ -182,12 +182,24 @@ async function handleApiRequest(req, res) {
       if (!body.name || !body.address) {
         return sendJson(res, 400, { error: 'Nome e endereço do cliente são obrigatórios.' });
       }
+      const rawCpfDigits = String(body.cpf || '').replace(/\D/g, '');
+      if (body.cpf !== undefined && rawCpfDigits.length > 0 && rawCpfDigits.length !== 11) {
+        return sendJson(res, 400, { error: 'Informe um CPF válido com 11 dígitos.' });
+      }
       const store = readStore();
+      const existingCustomer = body.id ? store.customers.find((c) => c.id === body.id) : null;
+      const effectiveCpfDigits = rawCpfDigits.length === 11
+        ? rawCpfDigits
+        : String(existingCustomer?.cpf || '').replace(/\D/g, '');
+      const cpfLast4 = effectiveCpfDigits.length === 11 ? effectiveCpfDigits.slice(-4) : null;
+
       const coords = getNeighborhoodCoords(body.neighborhood);
       const customer = {
         id: body.id || `cust-${Date.now()}`,
         name: String(body.name).trim(),
         phone: String(body.phone || '').trim(),
+        cpf: effectiveCpfDigits || '',
+        cpfLast4,
         address: String(body.address).trim(),
         neighborhood: String(body.neighborhood || 'CENTRO').toUpperCase(),
         lat: body.lat !== undefined ? Number(body.lat) : coords.lat,
@@ -725,6 +737,11 @@ async function handleApiRequest(req, res) {
 
       const initialStatus =
         originChannel === 'APP_CLIENTE' ? 'AGUARDANDO_CONFIRMACAO_LOJA' : 'AGUARDANDO_CICLISTA';
+      const generatedPickupCode =
+        initialStatus === 'AGUARDANDO_CICLISTA'
+          ? String(Math.floor(1000 + Math.random() * 9000))
+          : null;
+      const deliveryPin = customer?.cpfLast4 || (data.deliveryPin ? String(data.deliveryPin).slice(-4) : null);
 
       const nowIso = new Date().toISOString();
       const newOrder = {
@@ -735,6 +752,12 @@ async function handleApiRequest(req, res) {
         customerAddress: customer?.address || data.customerAddress || 'Endereço em Foz do Iguaçu',
         merchantId: merchant?.id || data.merchantId || null,
         merchantName: merchant?.name || data.merchantName || 'Farmácia Parceira',
+        pickupAddress: merchant?.address || '',
+        pickupNeighborhood: merchant?.neighborhood || 'CENTRO',
+        dropoffNeighborhood: customer?.neighborhood || data.dropoffNeighborhood || 'VILA_YOLANDA',
+        pickupCode: generatedPickupCode,
+        deliveryPin,
+        falseReadyReported: false,
         category,
         itemsSummary: data.itemsSummary || '',
         distanceKm: computedDistance,
@@ -750,6 +773,7 @@ async function handleApiRequest(req, res) {
         timestamps: {
           createdAt: nowIso,
           storeConfirmedAt: initialStatus === 'AGUARDANDO_CICLISTA' ? nowIso : null,
+          storeReadyAt: initialStatus === 'AGUARDANDO_CICLISTA' ? nowIso : null,
           storeRejectedAt: null,
           acceptedAt: null,
           arrivedPickupAt: null,
@@ -784,13 +808,42 @@ async function handleApiRequest(req, res) {
         });
       }
 
-      order.status = 'AGUARDANDO_CICLISTA';
+      order.status = 'EM_PREPARO_NA_LOJA';
       order.timestamps = order.timestamps || {};
       order.timestamps.storeConfirmedAt = new Date().toISOString();
 
       writeStore(store);
       return sendJson(res, 200, {
         confirmed: true,
+        order,
+      });
+    }
+
+    const readyPickupMatch = pathname.match(/^\/api\/orders\/([^/]+)\/ready-pickup$/);
+    if (method === 'POST' && readyPickupMatch) {
+      const orderId = readyPickupMatch[1];
+      const store = readStore();
+      const order = store.orders.find((o) => o.id === orderId);
+
+      if (!order) {
+        return sendJson(res, 404, { error: 'Pedido não encontrado.' });
+      }
+      if (order.status !== 'EM_PREPARO_NA_LOJA' && order.status !== 'AGUARDANDO_CONFIRMACAO_LOJA') {
+        return sendJson(res, 409, {
+          error: `Pedido não pode ser liberado para coleta neste status (${order.status}).`,
+        });
+      }
+
+      const nowIso = new Date().toISOString();
+      order.status = 'AGUARDANDO_CICLISTA';
+      order.pickupCode = order.pickupCode || String(Math.floor(1000 + Math.random() * 9000));
+      order.timestamps = order.timestamps || {};
+      order.timestamps.storeConfirmedAt = order.timestamps.storeConfirmedAt || nowIso;
+      order.timestamps.storeReadyAt = nowIso;
+
+      writeStore(store);
+      return sendJson(res, 200, {
+        ready: true,
         order,
       });
     }
@@ -805,9 +858,9 @@ async function handleApiRequest(req, res) {
       if (!order) {
         return sendJson(res, 404, { error: 'Pedido não encontrado.' });
       }
-      if (order.status !== 'AGUARDANDO_CONFIRMACAO_LOJA') {
+      if (order.status !== 'AGUARDANDO_CONFIRMACAO_LOJA' && order.status !== 'EM_PREPARO_NA_LOJA') {
         return sendJson(res, 409, {
-          error: `Apenas pedidos pendentes de confirmação podem ser recusados (status atual: ${order.status}).`,
+          error: `Apenas pedidos antes do despacho podem ser recusados (status atual: ${order.status}).`,
         });
       }
 
@@ -819,6 +872,30 @@ async function handleApiRequest(req, res) {
       writeStore(store);
       return sendJson(res, 200, {
         rejected: true,
+        order,
+      });
+    }
+
+    const notReadyMatch = pathname.match(/^\/api\/orders\/([^/]+)\/not-ready$/);
+    if (method === 'POST' && notReadyMatch) {
+      const orderId = notReadyMatch[1];
+      const store = readStore();
+      const order = store.orders.find((o) => o.id === orderId);
+
+      if (!order) {
+        return sendJson(res, 404, { error: 'Pedido não encontrado.' });
+      }
+      if (order.status !== 'NO_LOCAL_COLETA') {
+        return sendJson(res, 409, {
+          error: 'O alerta de pedido não pronto só pode ser acionado quando o ciclista já chegou na coleta.',
+        });
+      }
+
+      order.falseReadyReported = true;
+      order.falseReadyReportedAt = new Date().toISOString();
+      writeStore(store);
+      return sendJson(res, 200, {
+        reported: true,
         order,
       });
     }
@@ -921,15 +998,17 @@ async function handleApiRequest(req, res) {
       }
       if (expectedNext === 'EM_ROTA_ENTREGA') {
         order.timestamps.pickedUpAt = nowIso;
-        // Cálculo automático de espera real na coleta (arrivedPickupAt -> pickedUpAt)
         if (order.timestamps.arrivedPickupAt) {
           const arrivedMs = new Date(order.timestamps.arrivedPickupAt).getTime();
           const pickedMs = new Date(nowIso).getTime();
           const measuredWaitMinutes = Math.max(0, (pickedMs - arrivedMs) / 60000);
+          const effectiveWaitMinutes = order.falseReadyReported
+            ? Number((measuredWaitMinutes + BIKE_RULES.freeWaitMinutes).toFixed(1))
+            : Number(measuredWaitMinutes.toFixed(1));
           const previousWait = order.pricing?.ponta1_entregador?.billableWaitMinutes
             ? order.pricing.ponta1_entregador.billableWaitMinutes + BIKE_RULES.freeWaitMinutes
             : 0;
-          const finalWaitMinutes = Math.max(previousWait, Number(measuredWaitMinutes.toFixed(1)));
+          const finalWaitMinutes = Math.max(previousWait, effectiveWaitMinutes);
 
           if (finalWaitMinutes > BIKE_RULES.freeWaitMinutes) {
             const updatedPricing = calculateDeliveryPricing({
@@ -968,6 +1047,15 @@ async function handleApiRequest(req, res) {
 
       if (order.status === 'CONCLUIDO') {
         return sendJson(res, 409, { error: 'Pedido já foi concluído anteriormente.' });
+      }
+
+      if (order.deliveryPin) {
+        const providedPin = String(body.deliveryPin || '').replace(/\D/g, '');
+        if (providedPin !== String(order.deliveryPin)) {
+          return sendJson(res, 400, {
+            error: 'Senha de entrega incorreta. Solicite ao cliente os 4 últimos dígitos do CPF.',
+          });
+        }
       }
 
       order.status = 'CONCLUIDO';

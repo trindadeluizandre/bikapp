@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="/cliente/src/styles/client.css" />
 </head>
+
 <body>
   <header class="client-header">
     <div>
@@ -40,6 +42,12 @@
             <input type="text" id="custPhone" placeholder="(45) 99999-0000" required />
           </label>
         </div>
+        <div style="margin-bottom: 8px;">
+          <label>
+            CPF (Os 4 últimos dígitos serão sua senha de recebimento)
+            <input type="text" id="custCpf" placeholder="000.000.000-00" maxlength="14" required />
+          </label>
+        </div>
         <div class="two-cols">
           <label>
             Bairro / Região (Foz do Iguaçu)
@@ -68,14 +76,17 @@
           <select id="clientMerchant"></select>
         </label>
 
-        <div id="merchantCatalogBox" style="background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:10px; margin:10px 0;">
-          <strong style="display:block; margin-bottom:6px; font-size:0.9rem;">Produtos Leves Disponíveis na Loja:</strong>
+        <div id="merchantCatalogBox"
+          style="background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:10px; margin:10px 0;">
+          <strong style="display:block; margin-bottom:6px; font-size:0.9rem;">Produtos Leves Disponíveis na
+            Loja:</strong>
           <div id="productChecklist" style="display:flex; flex-direction:column; gap:6px; font-size:0.88rem;">
             Carregando catálogo da loja...
           </div>
         </div>
 
-        <div id="orderQuotePreview" style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.88rem;">
+        <div id="orderQuotePreview"
+          style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.88rem;">
           Selecione ao menos um produto para calcular peso, distância bike e frete.
         </div>
 
@@ -93,4 +104,5 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="/cliente/src/services/clientApp.js"></script>
 </body>
+
 </html>

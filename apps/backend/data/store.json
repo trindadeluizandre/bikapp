@@ -1,43 +1,241 @@
 {
   "city": "Foz do Iguaçu",
   "funds": {
-    "opsFund": 2.4,
-    "weeklyRankingPool": 1.95,
-    "insurancePool": 1.05
+    "opsFund": 1.6,
+    "weeklyRankingPool": 1.3,
+    "insurancePool": 0.7
   },
   "customers": [
     {
-      "id": "cust-1795720372538",
-      "name": "Cliente Recompra 1142",
+      "id": "cust-1795738004593",
+      "name": "Rec4038 Souza",
       "phone": "(45) 99944-5566",
+      "cpf": "98765432100",
+      "cpfLast4": "2100",
       "address": "Av. Brasil, 1200",
       "neighborhood": "CENTRO",
       "lat": -25.5478,
       "lng": -54.5882,
-      "createdAt": "2026-11-26T19:12:52.538Z"
+      "createdAt": "2026-11-27T00:06:44.593Z"
     },
     {
-      "id": "cust-1795720345504",
-      "name": "Cliente E2E 4060",
+      "id": "cust-1795737982764",
+      "name": "E2E2217 Silva",
       "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
       "address": "Rua Marechal Deodoro, 900",
       "neighborhood": "CENTRO",
       "lat": -25.5478,
       "lng": -54.5882,
-      "createdAt": "2026-11-26T19:12:25.504Z"
+      "createdAt": "2026-11-27T00:06:22.764Z"
     },
     {
-      "id": "cust-1795719988973",
-      "name": "Cliente E2E 7580",
+      "id": "cust-1795737689280",
+      "name": "Rec8742 Souza",
+      "phone": "(45) 99944-5566",
+      "cpf": "98765432100",
+      "cpfLast4": "2100",
+      "address": "Av. Brasil, 1200",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-27T00:01:29.280Z"
+    },
+    {
+      "id": "cust-1795737670262",
+      "name": "E2E9705 Silva",
       "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
       "address": "Rua Marechal Deodoro, 900",
       "neighborhood": "CENTRO",
       "lat": -25.5478,
       "lng": -54.5882,
-      "createdAt": "2026-11-26T19:06:28.973Z"
+      "createdAt": "2026-11-27T00:01:10.262Z"
+    },
+    {
+      "id": "cust-1795737408936",
+      "name": "Cliente Recompra 8388",
+      "phone": "(45) 99944-5566",
+      "cpf": "98765432100",
+      "cpfLast4": "2100",
+      "address": "Av. Brasil, 1200",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:56:48.936Z"
+    },
+    {
+      "id": "cust-1795737388787",
+      "name": "Cliente E2E 8245",
+      "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
+      "address": "Rua Marechal Deodoro, 900",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:56:28.787Z"
+    },
+    {
+      "id": "cust-1795737137804",
+      "name": "Cliente Recompra 7270",
+      "phone": "(45) 99944-5566",
+      "cpf": "98765432100",
+      "cpfLast4": "2100",
+      "address": "Av. Brasil, 1200",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:52:17.805Z"
+    },
+    {
+      "id": "cust-1795737076073",
+      "name": "Cliente E2E 5509",
+      "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
+      "address": "Rua Marechal Deodoro, 900",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:51:16.073Z"
+    },
+    {
+      "id": "cust-1795736877433",
+      "name": "Cliente Recompra 5759",
+      "phone": "(45) 99944-5566",
+      "cpf": "98765432100",
+      "cpfLast4": "2100",
+      "address": "Av. Brasil, 1200",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:47:57.433Z"
+    },
+    {
+      "id": "cust-1795736784946",
+      "name": "Cliente E2E 3289",
+      "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
+      "address": "Rua Marechal Deodoro, 900",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:46:24.946Z"
+    },
+    {
+      "id": "cust-1795736119087",
+      "name": "Cliente Recompra 7432",
+      "phone": "(45) 99944-5566",
+      "cpf": "98765432100",
+      "cpfLast4": "2100",
+      "address": "Av. Brasil, 1200",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:35:19.087Z"
+    },
+    {
+      "id": "cust-1795736055200",
+      "name": "Cliente E2E 3542",
+      "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
+      "address": "Rua Marechal Deodoro, 900",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:34:15.200Z"
+    },
+    {
+      "id": "cust-1795736036415",
+      "name": "Cliente Recompra 4757",
+      "phone": "(45) 99944-5566",
+      "cpf": "98765432100",
+      "cpfLast4": "2100",
+      "address": "Av. Brasil, 1200",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:33:56.415Z"
+    },
+    {
+      "id": "cust-1795736016113",
+      "name": "Cliente E2E 4457",
+      "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
+      "address": "Rua Marechal Deodoro, 900",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:33:36.113Z"
+    },
+    {
+      "id": "cust-1795735861072",
+      "name": "Cliente E2E 9385",
+      "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
+      "address": "Rua Marechal Deodoro, 900",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:31:01.072Z"
+    },
+    {
+      "id": "cust-1795735762769",
+      "name": "Cliente E2E 1113",
+      "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
+      "address": "Rua Marechal Deodoro, 900",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:29:22.769Z"
+    },
+    {
+      "id": "cust-1795735468054",
+      "name": "Cliente Recompra 6396",
+      "phone": "(45) 99944-5566",
+      "cpf": "98765432100",
+      "cpfLast4": "2100",
+      "address": "Av. Brasil, 1200",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:24:28.054Z"
+    },
+    {
+      "id": "cust-1795735448487",
+      "name": "Cliente E2E 6833",
+      "phone": "(45) 99911-2233",
+      "cpf": "12345678901",
+      "cpfLast4": "8901",
+      "address": "Rua Marechal Deodoro, 900",
+      "neighborhood": "CENTRO",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "createdAt": "2026-11-26T23:24:08.487Z"
     }
   ],
   "merchants": [
+    {
+      "id": "merch-1795731036313",
+      "name": "Burger 10",
+      "cnpjOrCpf": "12.345.678/0001-90",
+      "category": "FAST_FOOD_COMPACTO",
+      "address": "Avenida das Cataratas 825",
+      "neighborhood": "VILA_YOLANDA",
+      "lat": -25.5562,
+      "lng": -54.5775,
+      "approved": true,
+      "createdAt": "2026-11-26T22:10:36.313Z"
+    },
     {
       "id": "merch-farmacia-central",
       "name": "Farmácia Central — Centro",
@@ -64,6 +262,15 @@
     }
   ],
   "products": [
+    {
+      "id": "prod-1795731105002",
+      "merchantId": "merch-1795731036313",
+      "name": "burger 10",
+      "category": "FAST_FOOD_COMPACTO",
+      "weightKg": 0.6,
+      "priceBRL": 35,
+      "active": true
+    },
     {
       "id": "prod-1",
       "merchantId": "merch-farmacia-central",
@@ -94,22 +301,22 @@
   ],
   "orders": [
     {
-      "id": "ord-recompra-1795720389405",
+      "id": "ord-recompra-1795738018148",
       "originChannel": "RECOMPRA_SEGURADA",
-      "parentIncidentOrderId": "ord-1795720372838",
-      "customerId": "cust-1795720372538",
-      "customerName": "Cliente Recompra 1142",
+      "parentIncidentOrderId": "ord-1795738004808",
+      "customerId": "cust-1795738004593",
+      "customerName": "Rec4038 Souza",
       "customerAddress": "Av. Brasil, 1200",
-      "merchantId": "merch-farmacia-central",
-      "merchantName": "Farmácia Central — Centro",
-      "category": "FARMACIA_LEVE",
-      "itemsSummary": "[RECOMPRA SEGURADA] 1x Dipirona 500mg + Vitamina C (Kit Leve)",
-      "distanceKm": 0.8,
-      "weightKg": 0.4,
+      "merchantId": "merch-1795731036313",
+      "merchantName": "Burger 10",
+      "category": "FAST_FOOD_COMPACTO",
+      "itemsSummary": "[RECOMPRA SEGURADA] 1x burger 10",
+      "distanceKm": 1.82,
+      "weightKg": 0.6,
       "additionalStops": 0,
       "pickupCoords": {
-        "lat": -25.5478,
-        "lng": -54.5882
+        "lat": -25.5562,
+        "lng": -54.5775
       },
       "dropoffCoords": {
         "lat": -25.5478,
@@ -117,19 +324,20 @@
       },
       "status": "CONCLUIDO",
       "rejectionReason": null,
-      "courierId": "bike-danif-2-1795720368597",
+      "courierId": "bike-danif-2-1795738002669",
       "courierName": "Ciclista Reposicao E2E",
       "customerRating": 5,
       "timestamps": {
-        "createdAt": "2026-11-26T19:13:09.405Z",
-        "storeConfirmedAt": "2026-11-26T19:13:14.170Z",
+        "createdAt": "2026-11-27T00:06:58.148Z",
+        "storeConfirmedAt": "2026-11-27T00:07:03.278Z",
         "storeRejectedAt": null,
-        "acceptedAt": "2026-11-26T19:13:19.389Z",
-        "arrivedPickupAt": "2026-11-26T19:13:19.670Z",
-        "pickedUpAt": "2026-11-26T19:13:19.954Z",
-        "completedAt": "2026-11-26T19:13:20.237Z"
+        "acceptedAt": "2026-11-27T00:07:08.449Z",
+        "arrivedPickupAt": "2026-11-27T00:07:08.544Z",
+        "pickedUpAt": "2026-11-27T00:07:08.662Z",
+        "completedAt": "2026-11-27T00:07:08.761Z",
+        "storeReadyAt": "2026-11-27T00:07:03.395Z"
       },
-      "createdAt": "2026-11-26T19:13:09.405Z",
+      "createdAt": "2026-11-27T00:06:58.148Z",
       "pricing": {
         "approved": true,
         "validation": {
@@ -139,18 +347,18 @@
         "insuranceActiveInRoute": true,
         "ponta1_entregador": {
           "baseFee": 8,
-          "extraKm": 0,
-          "kmFee": 0,
+          "extraKm": 0.32,
+          "kmFee": 0.51,
           "additionalStops": 0,
           "stopsFee": 0,
           "billableWaitMinutes": 0,
           "waitFee": 0,
-          "totalPayout": 8
+          "totalPayout": 8.51
         },
         "ponta2_empresa": {
-          "orderValue": 34.9,
+          "orderValue": 35,
           "productCommission": 0,
-          "totalCost": 9.8
+          "totalCost": 10.31
         },
         "ponta3_bikapp": {
           "totalFee": 1.8,
@@ -159,24 +367,31 @@
           "insuranceFundContribution": 0.35
         }
       },
-      "completedAt": "2026-11-26T19:13:20.237Z"
+      "pickupCode": "5346",
+      "completedAt": "2026-11-27T00:07:08.761Z"
     },
     {
-      "id": "ord-1795720372838",
+      "id": "ord-1795738004808",
       "originChannel": "APP_CLIENTE",
-      "customerId": "cust-1795720372538",
-      "customerName": "Cliente Recompra 1142",
+      "customerId": "cust-1795738004593",
+      "customerName": "Rec4038 Souza",
       "customerAddress": "Av. Brasil, 1200",
-      "merchantId": "merch-farmacia-central",
-      "merchantName": "Farmácia Central — Centro",
-      "category": "FARMACIA_LEVE",
-      "itemsSummary": "1x Dipirona 500mg + Vitamina C (Kit Leve)",
-      "distanceKm": 0.8,
-      "weightKg": 0.4,
+      "merchantId": "merch-1795731036313",
+      "merchantName": "Burger 10",
+      "pickupAddress": "Avenida das Cataratas 825",
+      "pickupNeighborhood": "VILA_YOLANDA",
+      "dropoffNeighborhood": "CENTRO",
+      "pickupCode": "3983",
+      "deliveryPin": "2100",
+      "falseReadyReported": false,
+      "category": "FAST_FOOD_COMPACTO",
+      "itemsSummary": "1x burger 10",
+      "distanceKm": 1.82,
+      "weightKg": 0.6,
       "additionalStops": 0,
       "pickupCoords": {
-        "lat": -25.5478,
-        "lng": -54.5882
+        "lat": -25.5562,
+        "lng": -54.5775
       },
       "dropoffCoords": {
         "lat": -25.5478,
@@ -184,19 +399,20 @@
       },
       "status": "ENCERRADO_POR_INCIDENTE_RECOMPRA",
       "rejectionReason": null,
-      "courierId": "bike-danif-1-1795720368597",
+      "courierId": "bike-danif-1-1795738002669",
       "courierName": "Ciclista Avaria E2E",
       "customerRating": null,
       "timestamps": {
-        "createdAt": "2026-11-26T19:12:52.838Z",
-        "storeConfirmedAt": "2026-11-26T19:12:54.536Z",
+        "createdAt": "2026-11-27T00:06:44.808Z",
+        "storeConfirmedAt": "2026-11-27T00:06:48.377Z",
+        "storeReadyAt": "2026-11-27T00:06:48.493Z",
         "storeRejectedAt": null,
-        "acceptedAt": "2026-11-26T19:12:59.223Z",
-        "arrivedPickupAt": "2026-11-26T19:12:59.520Z",
-        "pickedUpAt": "2026-11-26T19:12:59.826Z",
+        "acceptedAt": "2026-11-27T00:06:53.548Z",
+        "arrivedPickupAt": "2026-11-27T00:06:53.643Z",
+        "pickedUpAt": "2026-11-27T00:06:53.743Z",
         "completedAt": null
       },
-      "createdAt": "2026-11-26T19:12:52.838Z",
+      "createdAt": "2026-11-27T00:06:44.808Z",
       "pricing": {
         "approved": true,
         "validation": {
@@ -206,18 +422,18 @@
         "insuranceActiveInRoute": true,
         "ponta1_entregador": {
           "baseFee": 8,
-          "extraKm": 0,
-          "kmFee": 0,
+          "extraKm": 0.32,
+          "kmFee": 0.51,
           "additionalStops": 0,
           "stopsFee": 0,
           "billableWaitMinutes": 0,
           "waitFee": 0,
-          "totalPayout": 8
+          "totalPayout": 8.51
         },
         "ponta2_empresa": {
-          "orderValue": 34.9,
+          "orderValue": 35,
           "productCommission": 0,
-          "totalCost": 9.8
+          "totalCost": 10.31
         },
         "ponta3_bikapp": {
           "totalFee": 1.8,
@@ -228,61 +444,265 @@
       },
       "isRescueAvailable": false,
       "incident": {
-        "sosId": "sos-1795720385699",
+        "sosId": "sos-1795738014058",
         "reason": "PANE MECÂNICA NA BIKE",
         "cargoCondition": "DANIFICADA",
-        "firstCourierId": "bike-danif-1-1795720368597",
+        "firstCourierId": "bike-danif-1-1795738002669",
+        "firstCourierName": "Ciclista Avaria E2E",
+        "previousStage": "EM_ROTA_ENTREGA",
+        "pickupLocation": {
+          "lat": -25.5427,
+          "lng": -54.5827
+        },
+        "reportedAt": "2026-11-27T00:06:54.058Z",
+        "firstCourierProtectedPayout": 4.25,
+        "rescuePricing": null,
+        "clientChoice": "RECOMPRA_SEGURADA",
+        "courtesyCreditBRL": 0,
+        "refundedAmountBRL": 0,
+        "replacementOrderId": "ord-recompra-1795738018148"
+      }
+    },
+    {
+      "id": "ord-1795737982991",
+      "originChannel": "APP_CLIENTE",
+      "customerId": "cust-1795737982764",
+      "customerName": "E2E2217 Silva",
+      "customerAddress": "Rua Marechal Deodoro, 900",
+      "merchantId": "merch-1795731036313",
+      "merchantName": "Burger 10",
+      "pickupAddress": "Avenida das Cataratas 825",
+      "pickupNeighborhood": "VILA_YOLANDA",
+      "dropoffNeighborhood": "CENTRO",
+      "pickupCode": "7413",
+      "deliveryPin": "8901",
+      "falseReadyReported": false,
+      "category": "FAST_FOOD_COMPACTO",
+      "itemsSummary": "1x burger 10",
+      "distanceKm": 1.82,
+      "weightKg": 0.6,
+      "additionalStops": 0,
+      "pickupCoords": {
+        "lat": -25.5562,
+        "lng": -54.5775
+      },
+      "dropoffCoords": {
+        "lat": -25.5478,
+        "lng": -54.5882
+      },
+      "status": "CONCLUIDO",
+      "rejectionReason": null,
+      "courierId": "bike-resgate-1795737980570",
+      "courierName": "Carlos Resgate Bike",
+      "customerRating": 5,
+      "timestamps": {
+        "createdAt": "2026-11-27T00:06:22.991Z",
+        "storeConfirmedAt": "2026-11-27T00:06:26.560Z",
+        "storeReadyAt": "2026-11-27T00:06:26.692Z",
+        "storeRejectedAt": null,
+        "acceptedAt": "2026-11-27T00:06:36.442Z",
+        "arrivedPickupAt": "2026-11-27T00:06:31.325Z",
+        "pickedUpAt": "2026-11-27T00:06:36.542Z",
+        "completedAt": "2026-11-27T00:06:36.762Z"
+      },
+      "createdAt": "2026-11-27T00:06:22.991Z",
+      "pricing": {
+        "approved": true,
+        "validation": {
+          "allowed": true,
+          "errors": []
+        },
+        "insuranceActiveInRoute": true,
+        "ponta1_entregador": {
+          "baseFee": 8,
+          "extraKm": 0.32,
+          "kmFee": 0.51,
+          "additionalStops": 0,
+          "stopsFee": 0,
+          "billableWaitMinutes": 0,
+          "waitFee": 0,
+          "totalPayout": 20.52,
+          "rescueBonusApplied": 12.01
+        },
+        "ponta2_empresa": {
+          "orderValue": 35,
+          "productCommission": 0,
+          "totalCost": 10.31
+        },
+        "ponta3_bikapp": {
+          "totalFee": 1.8,
+          "opsFund": 0.8,
+          "rankingFundContribution": 0.65,
+          "insuranceFundContribution": 0.35
+        }
+      },
+      "isRescueAvailable": false,
+      "incident": {
+        "sosId": "sos-1795737991758",
+        "reason": "PANE MECÂNICA NA BIKE",
+        "cargoCondition": "INTACTA",
+        "firstCourierId": "bike-primario-1795737980570",
+        "firstCourierName": "Ciclista Primario E2E",
+        "previousStage": "EM_ROTA_ENTREGA",
+        "pickupLocation": {
+          "lat": -25.5427,
+          "lng": -54.5827
+        },
+        "reportedAt": "2026-11-27T00:06:31.758Z",
+        "firstCourierProtectedPayout": 4.25,
+        "rescuePricing": {
+          "originalPayout": 8.51,
+          "doubledPayout": 17.02,
+          "timeCompensationFee": 3.5,
+          "rescueTotalPayout": 20.52,
+          "fundSubsidyRequired": 12.01
+        },
+        "clientChoice": "AGUARDAR_RESGATE",
+        "courtesyCreditBRL": 5,
+        "refundedAmountBRL": 0,
+        "replacementOrderId": null,
+        "rescueCourierId": "bike-resgate-1795737980570",
+        "rescueCourierName": "Carlos Resgate Bike",
+        "rescueAcceptedAt": "2026-11-27T00:06:36.442Z"
+      },
+      "completedAt": "2026-11-27T00:06:36.762Z"
+    },
+    {
+      "id": "ord-1795737689511",
+      "originChannel": "APP_CLIENTE",
+      "customerId": "cust-1795737689280",
+      "customerName": "Rec8742 Souza",
+      "customerAddress": "Av. Brasil, 1200",
+      "merchantId": "merch-1795731036313",
+      "merchantName": "Burger 10",
+      "pickupAddress": "Avenida das Cataratas 825",
+      "pickupNeighborhood": "VILA_YOLANDA",
+      "dropoffNeighborhood": "CENTRO",
+      "pickupCode": "4404",
+      "deliveryPin": "2100",
+      "falseReadyReported": false,
+      "category": "FAST_FOOD_COMPACTO",
+      "itemsSummary": "1x burger 10",
+      "distanceKm": 1.82,
+      "weightKg": 0.6,
+      "additionalStops": 0,
+      "pickupCoords": {
+        "lat": -25.5562,
+        "lng": -54.5775
+      },
+      "dropoffCoords": {
+        "lat": -25.5478,
+        "lng": -54.5882
+      },
+      "status": "INCIDENTE_EM_ROTA",
+      "rejectionReason": null,
+      "courierId": "bike-danif-1-1795737687161",
+      "courierName": "Ciclista Avaria E2E",
+      "customerRating": null,
+      "timestamps": {
+        "createdAt": "2026-11-27T00:01:29.511Z",
+        "storeConfirmedAt": "2026-11-27T00:01:33.096Z",
+        "storeReadyAt": "2026-11-27T00:01:33.212Z",
+        "storeRejectedAt": null,
+        "acceptedAt": "2026-11-27T00:01:37.702Z",
+        "arrivedPickupAt": "2026-11-27T00:01:37.795Z",
+        "pickedUpAt": "2026-11-27T00:01:37.895Z",
+        "completedAt": null
+      },
+      "createdAt": "2026-11-27T00:01:29.511Z",
+      "pricing": {
+        "approved": true,
+        "validation": {
+          "allowed": true,
+          "errors": []
+        },
+        "insuranceActiveInRoute": true,
+        "ponta1_entregador": {
+          "baseFee": 8,
+          "extraKm": 0.32,
+          "kmFee": 0.51,
+          "additionalStops": 0,
+          "stopsFee": 0,
+          "billableWaitMinutes": 0,
+          "waitFee": 0,
+          "totalPayout": 8.51
+        },
+        "ponta2_empresa": {
+          "orderValue": 35,
+          "productCommission": 0,
+          "totalCost": 10.31
+        },
+        "ponta3_bikapp": {
+          "totalFee": 1.8,
+          "opsFund": 0.8,
+          "rankingFundContribution": 0.65,
+          "insuranceFundContribution": 0.35
+        }
+      },
+      "isRescueAvailable": false,
+      "incident": {
+        "sosId": "sos-1795737703211",
+        "reason": "PANE MECÂNICA NA BIKE",
+        "cargoCondition": "DANIFICADA",
+        "firstCourierId": "bike-danif-1-1795737687161",
         "firstCourierName": "Ciclista Avaria E2E",
         "previousStage": "EM_ROTA_ENTREGA",
         "pickupLocation": {
           "lat": -25.5478,
           "lng": -54.5882
         },
-        "reportedAt": "2026-11-26T19:13:05.699Z",
-        "firstCourierProtectedPayout": 4,
+        "reportedAt": "2026-11-27T00:01:43.211Z",
+        "firstCourierProtectedPayout": 4.25,
         "rescuePricing": null,
-        "clientChoice": "RECOMPRA_SEGURADA",
+        "clientChoice": null,
         "courtesyCreditBRL": 0,
         "refundedAmountBRL": 0,
-        "replacementOrderId": "ord-recompra-1795720389405"
+        "replacementOrderId": null
       }
     },
     {
-      "id": "ord-1795720345821",
+      "id": "ord-1795737670511",
       "originChannel": "APP_CLIENTE",
-      "customerId": "cust-1795720345504",
-      "customerName": "Cliente E2E 4060",
+      "customerId": "cust-1795737670262",
+      "customerName": "E2E9705 Silva",
       "customerAddress": "Rua Marechal Deodoro, 900",
-      "merchantId": "merch-farmacia-central",
-      "merchantName": "Farmácia Central — Centro",
-      "category": "FARMACIA_LEVE",
-      "itemsSummary": "1x Dipirona 500mg + Vitamina C (Kit Leve)",
-      "distanceKm": 0.8,
-      "weightKg": 0.4,
+      "merchantId": "merch-1795731036313",
+      "merchantName": "Burger 10",
+      "pickupAddress": "Avenida das Cataratas 825",
+      "pickupNeighborhood": "VILA_YOLANDA",
+      "dropoffNeighborhood": "CENTRO",
+      "pickupCode": "8675",
+      "deliveryPin": "8901",
+      "falseReadyReported": false,
+      "category": "FAST_FOOD_COMPACTO",
+      "itemsSummary": "1x burger 10",
+      "distanceKm": 1.82,
+      "weightKg": 0.6,
       "additionalStops": 0,
       "pickupCoords": {
-        "lat": -25.5478,
-        "lng": -54.5882
+        "lat": -25.5562,
+        "lng": -54.5775
       },
       "dropoffCoords": {
         "lat": -25.5478,
         "lng": -54.5882
       },
-      "status": "CONCLUIDO",
+      "status": "INCIDENTE_EM_ROTA",
       "rejectionReason": null,
-      "courierId": "bike-resgate-1795720341474",
-      "courierName": "Carlos Resgate Bike",
-      "customerRating": 5,
+      "courierId": "bike-primario-1795737668008",
+      "courierName": "Ciclista Primario E2E",
+      "customerRating": null,
       "timestamps": {
-        "createdAt": "2026-11-26T19:12:25.821Z",
-        "storeConfirmedAt": "2026-11-26T19:12:27.025Z",
+        "createdAt": "2026-11-27T00:01:10.511Z",
+        "storeConfirmedAt": "2026-11-27T00:01:13.561Z",
+        "storeReadyAt": "2026-11-27T00:01:13.695Z",
         "storeRejectedAt": null,
-        "acceptedAt": "2026-11-26T19:12:42.703Z",
-        "arrivedPickupAt": "2026-11-26T19:12:32.552Z",
-        "pickedUpAt": "2026-11-26T19:12:42.986Z",
-        "completedAt": "2026-11-26T19:12:43.269Z"
+        "acceptedAt": "2026-11-27T00:01:18.753Z",
+        "arrivedPickupAt": "2026-11-27T00:01:18.843Z",
+        "pickedUpAt": "2026-11-27T00:01:18.944Z",
+        "completedAt": null
       },
-      "createdAt": "2026-11-26T19:12:25.821Z",
+      "createdAt": "2026-11-27T00:01:10.511Z",
       "pricing": {
         "approved": true,
         "validation": {
@@ -292,19 +712,19 @@
         "insuranceActiveInRoute": true,
         "ponta1_entregador": {
           "baseFee": 8,
-          "extraKm": 0,
-          "kmFee": 0,
+          "extraKm": 0.32,
+          "kmFee": 0.51,
           "additionalStops": 0,
           "stopsFee": 0,
           "billableWaitMinutes": 0,
           "waitFee": 0,
-          "totalPayout": 19.5,
-          "rescueBonusApplied": 11.5
+          "totalPayout": 20.52,
+          "rescueBonusApplied": 12.01
         },
         "ponta2_empresa": {
-          "orderValue": 34.9,
+          "orderValue": 35,
           "productCommission": 0,
-          "totalCost": 9.8
+          "totalCost": 10.31
         },
         "ponta3_bikapp": {
           "totalFee": 1.8,
@@ -313,73 +733,76 @@
           "insuranceFundContribution": 0.35
         }
       },
-      "isRescueAvailable": false,
+      "isRescueAvailable": true,
       "incident": {
-        "sosId": "sos-1795720358715",
+        "sosId": "sos-1795737684260",
         "reason": "PANE MECÂNICA NA BIKE",
         "cargoCondition": "INTACTA",
-        "firstCourierId": "bike-primario-1795720341474",
+        "firstCourierId": "bike-primario-1795737668008",
         "firstCourierName": "Ciclista Primario E2E",
         "previousStage": "EM_ROTA_ENTREGA",
         "pickupLocation": {
           "lat": -25.5478,
           "lng": -54.5882
         },
-        "reportedAt": "2026-11-26T19:12:38.715Z",
-        "firstCourierProtectedPayout": 4,
+        "reportedAt": "2026-11-27T00:01:24.260Z",
+        "firstCourierProtectedPayout": 4.25,
         "rescuePricing": {
-          "originalPayout": 8,
-          "doubledPayout": 16,
+          "originalPayout": 8.51,
+          "doubledPayout": 17.02,
           "timeCompensationFee": 3.5,
-          "rescueTotalPayout": 19.5,
-          "fundSubsidyRequired": 11.5
+          "rescueTotalPayout": 20.52,
+          "fundSubsidyRequired": 12.01
         },
-        "clientChoice": "AGUARDAR_RESGATE",
-        "courtesyCreditBRL": 5,
+        "clientChoice": null,
+        "courtesyCreditBRL": 0,
         "refundedAmountBRL": 0,
-        "replacementOrderId": null,
-        "rescueCourierId": "bike-resgate-1795720341474",
-        "rescueCourierName": "Carlos Resgate Bike",
-        "rescueAcceptedAt": "2026-11-26T19:12:42.703Z"
-      },
-      "completedAt": "2026-11-26T19:12:43.269Z"
+        "replacementOrderId": null
+      }
     },
     {
-      "id": "ord-1795719989272",
+      "id": "ord-1795737409152",
       "originChannel": "APP_CLIENTE",
-      "customerId": "cust-1795719988973",
-      "customerName": "Cliente E2E 7580",
-      "customerAddress": "Rua Marechal Deodoro, 900",
-      "merchantId": "merch-farmacia-central",
-      "merchantName": "Farmácia Central — Centro",
-      "category": "FARMACIA_LEVE",
-      "itemsSummary": "1x Dipirona 500mg + Vitamina C (Kit Leve)",
-      "distanceKm": 0.8,
-      "weightKg": 0.4,
+      "customerId": "cust-1795737408936",
+      "customerName": "Cliente Recompra 8388",
+      "customerAddress": "Av. Brasil, 1200",
+      "merchantId": "merch-1795731036313",
+      "merchantName": "Burger 10",
+      "pickupAddress": "Avenida das Cataratas 825",
+      "pickupNeighborhood": "VILA_YOLANDA",
+      "dropoffNeighborhood": "CENTRO",
+      "pickupCode": "1625",
+      "deliveryPin": "2100",
+      "falseReadyReported": false,
+      "category": "FAST_FOOD_COMPACTO",
+      "itemsSummary": "1x burger 10",
+      "distanceKm": 1.82,
+      "weightKg": 0.6,
       "additionalStops": 0,
       "pickupCoords": {
-        "lat": -25.5478,
-        "lng": -54.5882
+        "lat": -25.5562,
+        "lng": -54.5775
       },
       "dropoffCoords": {
         "lat": -25.5478,
         "lng": -54.5882
       },
-      "status": "CONCLUIDO",
+      "status": "AGUARDANDO_CICLISTA",
       "rejectionReason": null,
-      "courierId": "bike-resgate-1795719984728",
-      "courierName": "Carlos Resgate Bike",
-      "customerRating": 5,
+      "courierId": null,
+      "courierName": null,
+      "customerRating": null,
       "timestamps": {
-        "createdAt": "2026-11-26T19:06:29.272Z",
-        "storeConfirmedAt": "2026-11-26T19:06:30.455Z",
+        "createdAt": "2026-11-26T23:56:49.152Z",
+        "storeConfirmedAt": "2026-11-26T23:56:52.720Z",
+        "storeReadyAt": "2026-11-26T23:56:52.835Z",
         "storeRejectedAt": null,
-        "acceptedAt": "2026-11-26T19:06:45.589Z",
-        "arrivedPickupAt": "2026-11-26T19:06:35.972Z",
-        "pickedUpAt": "2026-11-26T19:06:45.872Z",
-        "completedAt": "2026-11-26T19:06:46.155Z"
+        "acceptedAt": null,
+        "arrivedPickupAt": null,
+        "pickedUpAt": null,
+        "completedAt": null
       },
-      "createdAt": "2026-11-26T19:06:29.272Z",
+      "createdAt": "2026-11-26T23:56:49.152Z",
       "pricing": {
         "approved": true,
         "validation": {
@@ -389,19 +812,18 @@
         "insuranceActiveInRoute": true,
         "ponta1_entregador": {
           "baseFee": 8,
-          "extraKm": 0,
-          "kmFee": 0,
+          "extraKm": 0.32,
+          "kmFee": 0.51,
           "additionalStops": 0,
           "stopsFee": 0,
           "billableWaitMinutes": 0,
           "waitFee": 0,
-          "totalPayout": 19.5,
-          "rescueBonusApplied": 11.5
+          "totalPayout": 8.51
         },
         "ponta2_empresa": {
-          "orderValue": 34.9,
+          "orderValue": 35,
           "productCommission": 0,
-          "totalCost": 9.8
+          "totalCost": 10.31
         },
         "ponta3_bikapp": {
           "totalFee": 1.8,
@@ -409,45 +831,234 @@
           "rankingFundContribution": 0.65,
           "insuranceFundContribution": 0.35
         }
+      }
+    },
+    {
+      "id": "ord-1795737389002",
+      "originChannel": "APP_CLIENTE",
+      "customerId": "cust-1795737388787",
+      "customerName": "Cliente E2E 8245",
+      "customerAddress": "Rua Marechal Deodoro, 900",
+      "merchantId": "merch-1795731036313",
+      "merchantName": "Burger 10",
+      "pickupAddress": "Avenida das Cataratas 825",
+      "pickupNeighborhood": "VILA_YOLANDA",
+      "dropoffNeighborhood": "CENTRO",
+      "pickupCode": "9065",
+      "deliveryPin": "8901",
+      "falseReadyReported": false,
+      "category": "FAST_FOOD_COMPACTO",
+      "itemsSummary": "1x burger 10",
+      "distanceKm": 1.82,
+      "weightKg": 0.6,
+      "additionalStops": 0,
+      "pickupCoords": {
+        "lat": -25.5562,
+        "lng": -54.5775
       },
-      "isRescueAvailable": false,
-      "incident": {
-        "sosId": "sos-1795720002134",
-        "reason": "PANE MECÂNICA NA BIKE",
-        "cargoCondition": "INTACTA",
-        "firstCourierId": "bike-primario-1795719984728",
-        "firstCourierName": "Ciclista Primario E2E",
-        "previousStage": "EM_ROTA_ENTREGA",
-        "pickupLocation": {
-          "lat": -25.5478,
-          "lng": -54.5882
-        },
-        "reportedAt": "2026-11-26T19:06:42.134Z",
-        "firstCourierProtectedPayout": 4,
-        "rescuePricing": {
-          "originalPayout": 8,
-          "doubledPayout": 16,
-          "timeCompensationFee": 3.5,
-          "rescueTotalPayout": 19.5,
-          "fundSubsidyRequired": 11.5
-        },
-        "clientChoice": "AGUARDAR_RESGATE",
-        "courtesyCreditBRL": 5,
-        "refundedAmountBRL": 0,
-        "replacementOrderId": null,
-        "rescueCourierId": "bike-resgate-1795719984728",
-        "rescueCourierName": "Carlos Resgate Bike",
-        "rescueAcceptedAt": "2026-11-26T19:06:45.589Z"
+      "dropoffCoords": {
+        "lat": -25.5478,
+        "lng": -54.5882
       },
-      "completedAt": "2026-11-26T19:06:46.155Z"
+      "status": "AGUARDANDO_CICLISTA",
+      "rejectionReason": null,
+      "courierId": null,
+      "courierName": null,
+      "customerRating": null,
+      "timestamps": {
+        "createdAt": "2026-11-26T23:56:29.002Z",
+        "storeConfirmedAt": "2026-11-26T23:56:32.052Z",
+        "storeReadyAt": "2026-11-26T23:56:32.168Z",
+        "storeRejectedAt": null,
+        "acceptedAt": null,
+        "arrivedPickupAt": null,
+        "pickedUpAt": null,
+        "completedAt": null
+      },
+      "createdAt": "2026-11-26T23:56:29.002Z",
+      "pricing": {
+        "approved": true,
+        "validation": {
+          "allowed": true,
+          "errors": []
+        },
+        "insuranceActiveInRoute": true,
+        "ponta1_entregador": {
+          "baseFee": 8,
+          "extraKm": 0.32,
+          "kmFee": 0.51,
+          "additionalStops": 0,
+          "stopsFee": 0,
+          "billableWaitMinutes": 0,
+          "waitFee": 0,
+          "totalPayout": 8.51
+        },
+        "ponta2_empresa": {
+          "orderValue": 35,
+          "productCommission": 0,
+          "totalCost": 10.31
+        },
+        "ponta3_bikapp": {
+          "totalFee": 1.8,
+          "opsFund": 0.8,
+          "rankingFundContribution": 0.65,
+          "insuranceFundContribution": 0.35
+        }
+      }
+    },
+    {
+      "id": "ord-1795735468352",
+      "originChannel": "APP_CLIENTE",
+      "customerId": "cust-1795735468054",
+      "customerName": "Cliente Recompra 6396",
+      "customerAddress": "Av. Brasil, 1200",
+      "merchantId": "merch-1795731036313",
+      "merchantName": "Burger 10",
+      "pickupAddress": "Avenida das Cataratas 825",
+      "pickupNeighborhood": "VILA_YOLANDA",
+      "dropoffNeighborhood": "CENTRO",
+      "pickupCode": null,
+      "deliveryPin": "2100",
+      "falseReadyReported": false,
+      "category": "FAST_FOOD_COMPACTO",
+      "itemsSummary": "1x burger 10",
+      "distanceKm": 1.82,
+      "weightKg": 0.6,
+      "additionalStops": 0,
+      "pickupCoords": {
+        "lat": -25.5562,
+        "lng": -54.5775
+      },
+      "dropoffCoords": {
+        "lat": -25.5478,
+        "lng": -54.5882
+      },
+      "status": "AGUARDANDO_CONFIRMACAO_LOJA",
+      "rejectionReason": null,
+      "courierId": null,
+      "courierName": null,
+      "customerRating": null,
+      "timestamps": {
+        "createdAt": "2026-11-26T23:24:28.352Z",
+        "storeConfirmedAt": null,
+        "storeReadyAt": null,
+        "storeRejectedAt": null,
+        "acceptedAt": null,
+        "arrivedPickupAt": null,
+        "pickedUpAt": null,
+        "completedAt": null
+      },
+      "createdAt": "2026-11-26T23:24:28.352Z",
+      "pricing": {
+        "approved": true,
+        "validation": {
+          "allowed": true,
+          "errors": []
+        },
+        "insuranceActiveInRoute": true,
+        "ponta1_entregador": {
+          "baseFee": 8,
+          "extraKm": 0.32,
+          "kmFee": 0.51,
+          "additionalStops": 0,
+          "stopsFee": 0,
+          "billableWaitMinutes": 0,
+          "waitFee": 0,
+          "totalPayout": 8.51
+        },
+        "ponta2_empresa": {
+          "orderValue": 35,
+          "productCommission": 0,
+          "totalCost": 10.31
+        },
+        "ponta3_bikapp": {
+          "totalFee": 1.8,
+          "opsFund": 0.8,
+          "rankingFundContribution": 0.65,
+          "insuranceFundContribution": 0.35
+        }
+      }
+    },
+    {
+      "id": "ord-1795735448785",
+      "originChannel": "APP_CLIENTE",
+      "customerId": "cust-1795735448487",
+      "customerName": "Cliente E2E 6833",
+      "customerAddress": "Rua Marechal Deodoro, 900",
+      "merchantId": "merch-1795731036313",
+      "merchantName": "Burger 10",
+      "pickupAddress": "Avenida das Cataratas 825",
+      "pickupNeighborhood": "VILA_YOLANDA",
+      "dropoffNeighborhood": "CENTRO",
+      "pickupCode": null,
+      "deliveryPin": "8901",
+      "falseReadyReported": false,
+      "category": "FAST_FOOD_COMPACTO",
+      "itemsSummary": "1x burger 10",
+      "distanceKm": 1.82,
+      "weightKg": 0.6,
+      "additionalStops": 0,
+      "pickupCoords": {
+        "lat": -25.5562,
+        "lng": -54.5775
+      },
+      "dropoffCoords": {
+        "lat": -25.5478,
+        "lng": -54.5882
+      },
+      "status": "AGUARDANDO_CONFIRMACAO_LOJA",
+      "rejectionReason": null,
+      "courierId": null,
+      "courierName": null,
+      "customerRating": null,
+      "timestamps": {
+        "createdAt": "2026-11-26T23:24:08.785Z",
+        "storeConfirmedAt": null,
+        "storeReadyAt": null,
+        "storeRejectedAt": null,
+        "acceptedAt": null,
+        "arrivedPickupAt": null,
+        "pickedUpAt": null,
+        "completedAt": null
+      },
+      "createdAt": "2026-11-26T23:24:08.785Z",
+      "pricing": {
+        "approved": true,
+        "validation": {
+          "allowed": true,
+          "errors": []
+        },
+        "insuranceActiveInRoute": true,
+        "ponta1_entregador": {
+          "baseFee": 8,
+          "extraKm": 0.32,
+          "kmFee": 0.51,
+          "additionalStops": 0,
+          "stopsFee": 0,
+          "billableWaitMinutes": 0,
+          "waitFee": 0,
+          "totalPayout": 8.51
+        },
+        "ponta2_empresa": {
+          "orderValue": 35,
+          "productCommission": 0,
+          "totalCost": 10.31
+        },
+        "ponta3_bikapp": {
+          "totalFee": 1.8,
+          "opsFund": 0.8,
+          "rankingFundContribution": 0.65,
+          "insuranceFundContribution": 0.35
+        }
+      }
     }
   ],
   "couriers": [
     {
       "pixKey": "01024212009",
       "phone": "45920011037",
-      "approved": false,
-      "online": false,
+      "approved": true,
+      "online": true,
       "id": "bike-andre",
       "name": "André Luiz Trindade",
       "city": "Foz do Iguaçu",
@@ -903,9 +1514,9 @@
       "city": "Foz do Iguaçu",
       "previousRank": 26,
       "metrics": {
-        "completedDeliveries": 1,
-        "onTimeDeliveries": 1,
-        "fiveStarRatings": 1,
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
         "peakOrRainDeliveries": 0,
         "unjustifiedCancels": 0,
         "severeLateDeliveries": 0
@@ -939,9 +1550,9 @@
       "city": "Foz do Iguaçu",
       "previousRank": 28,
       "metrics": {
-        "completedDeliveries": 1,
-        "onTimeDeliveries": 1,
-        "fiveStarRatings": 1,
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
         "peakOrRainDeliveries": 0,
         "unjustifiedCancels": 0,
         "severeLateDeliveries": 0
@@ -975,6 +1586,726 @@
       "city": "Foz do Iguaçu",
       "previousRank": 30,
       "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795735047508",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 31,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795735047508",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 32,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "avaria.e2e@pix.bikapp",
+      "phone": "(45) 99966-1100",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-1-1795735059497",
+      "name": "Ciclista Avaria E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 33,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "reposicao.e2e@pix.bikapp",
+      "phone": "(45) 99966-2200",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-2-1795735059497",
+      "name": "Ciclista Reposicao E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 34,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795735444210",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 35,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795735444210",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 36,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "avaria.e2e@pix.bikapp",
+      "phone": "(45) 99966-1100",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-1-1795735463658",
+      "name": "Ciclista Avaria E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 37,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "reposicao.e2e@pix.bikapp",
+      "phone": "(45) 99966-2200",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-2-1795735463658",
+      "name": "Ciclista Reposicao E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 38,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795735757984",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 39,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795735757984",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 40,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795735856716",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 41,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795735856716",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 42,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795736011719",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 43,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795736011719",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 44,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "avaria.e2e@pix.bikapp",
+      "phone": "(45) 99966-1100",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-1-1795736032068",
+      "name": "Ciclista Avaria E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 45,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "reposicao.e2e@pix.bikapp",
+      "phone": "(45) 99966-2200",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-2-1795736032068",
+      "name": "Ciclista Reposicao E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 46,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795736050858",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 47,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795736050858",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 48,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "avaria.e2e@pix.bikapp",
+      "phone": "(45) 99966-1100",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-1-1795736114749",
+      "name": "Ciclista Avaria E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 49,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "reposicao.e2e@pix.bikapp",
+      "phone": "(45) 99966-2200",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-2-1795736114749",
+      "name": "Ciclista Reposicao E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 50,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795736780651",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 51,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795736780651",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 52,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "avaria.e2e@pix.bikapp",
+      "phone": "(45) 99966-1100",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-1-1795736872941",
+      "name": "Ciclista Avaria E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 53,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "reposicao.e2e@pix.bikapp",
+      "phone": "(45) 99966-2200",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-2-1795736872941",
+      "name": "Ciclista Reposicao E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 54,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795737073833",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 55,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795737073833",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 56,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "avaria.e2e@pix.bikapp",
+      "phone": "(45) 99966-1100",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-1-1795737135751",
+      "name": "Ciclista Avaria E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 57,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "reposicao.e2e@pix.bikapp",
+      "phone": "(45) 99966-2200",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-2-1795737135751",
+      "name": "Ciclista Reposicao E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 58,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795737386493",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 59,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795737386493",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 60,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "avaria.e2e@pix.bikapp",
+      "phone": "(45) 99966-1100",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-1-1795737406919",
+      "name": "Ciclista Avaria E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 61,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "reposicao.e2e@pix.bikapp",
+      "phone": "(45) 99966-2200",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-2-1795737406919",
+      "name": "Ciclista Reposicao E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 62,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795737668008",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 63,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795737668008",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 64,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "avaria.e2e@pix.bikapp",
+      "phone": "(45) 99966-1100",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-1-1795737687161",
+      "name": "Ciclista Avaria E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 65,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "reposicao.e2e@pix.bikapp",
+      "phone": "(45) 99966-2200",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-2-1795737687161",
+      "name": "Ciclista Reposicao E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 66,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "primario.e2e@pix.bikapp",
+      "phone": "(45) 99977-1122",
+      "approved": true,
+      "online": true,
+      "id": "bike-primario-1795737980570",
+      "name": "Ciclista Primario E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 67,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "carlos.resgate@pix.bikapp",
+      "phone": "(45) 99988-7766",
+      "approved": true,
+      "online": true,
+      "id": "bike-resgate-1795737980570",
+      "name": "Carlos Resgate Bike",
+      "city": "Foz do Iguaçu",
+      "previousRank": 68,
+      "metrics": {
+        "completedDeliveries": 1,
+        "onTimeDeliveries": 1,
+        "fiveStarRatings": 1,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "avaria.e2e@pix.bikapp",
+      "phone": "(45) 99966-1100",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-1-1795738002669",
+      "name": "Ciclista Avaria E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 69,
+      "metrics": {
+        "completedDeliveries": 0,
+        "onTimeDeliveries": 0,
+        "fiveStarRatings": 0,
+        "peakOrRainDeliveries": 0,
+        "unjustifiedCancels": 0,
+        "severeLateDeliveries": 0
+      }
+    },
+    {
+      "pixKey": "reposicao.e2e@pix.bikapp",
+      "phone": "(45) 99966-2200",
+      "approved": true,
+      "online": true,
+      "id": "bike-danif-2-1795738002669",
+      "name": "Ciclista Reposicao E2E",
+      "city": "Foz do Iguaçu",
+      "previousRank": 70,
+      "metrics": {
         "completedDeliveries": 1,
         "onTimeDeliveries": 1,
         "fiveStarRatings": 1,
@@ -988,51 +2319,67 @@
   "liveLocations": [],
   "sosAlerts": [
     {
-      "id": "sos-1795720385699",
-      "courierId": "bike-danif-1-1795720368597",
+      "id": "sos-1795738014058",
+      "courierId": "bike-danif-1-1795738002669",
       "courierName": "Ciclista Avaria E2E",
       "courierPhone": "(45) 99966-1100",
       "reason": "PANE MECÂNICA NA BIKE",
       "cargoCondition": "DANIFICADA",
-      "activeOrderId": "ord-1795720372838",
-      "activeOrderSummary": "Farmácia Central — Centro -> Cliente Recompra 1142 (DANIFICADA)",
-      "lat": -25.5478,
-      "lng": -54.5882,
-      "insurancePoolSnapshot": 0.7,
-      "status": "ABERTO",
-      "createdAt": "2026-11-26T19:13:05.699Z",
-      "resolvedAt": null
-    },
-    {
-      "id": "sos-1795720358715",
-      "courierId": "bike-primario-1795720341474",
-      "courierName": "Ciclista Primario E2E",
-      "courierPhone": "(45) 99977-1122",
-      "reason": "PANE MECÂNICA NA BIKE",
-      "cargoCondition": "INTACTA",
-      "activeOrderId": "ord-1795720345821",
-      "activeOrderSummary": "Farmácia Central — Centro -> Cliente E2E 4060 (INTACTA)",
-      "lat": -25.5478,
-      "lng": -54.5882,
+      "activeOrderId": "ord-1795738004808",
+      "activeOrderSummary": "Burger 10 -> Rec4038 Souza (DANIFICADA)",
+      "lat": -25.5427,
+      "lng": -54.5827,
       "insurancePoolSnapshot": 0.35,
       "status": "ABERTO",
-      "createdAt": "2026-11-26T19:12:38.715Z",
+      "createdAt": "2026-11-27T00:06:54.058Z",
       "resolvedAt": null
     },
     {
-      "id": "sos-1795720002134",
-      "courierId": "bike-primario-1795719984728",
+      "id": "sos-1795737991758",
+      "courierId": "bike-primario-1795737980570",
       "courierName": "Ciclista Primario E2E",
       "courierPhone": "(45) 99977-1122",
       "reason": "PANE MECÂNICA NA BIKE",
       "cargoCondition": "INTACTA",
-      "activeOrderId": "ord-1795719989272",
-      "activeOrderSummary": "Farmácia Central — Centro -> Cliente E2E 7580 (INTACTA)",
+      "activeOrderId": "ord-1795737982991",
+      "activeOrderSummary": "Burger 10 -> E2E2217 Silva (INTACTA)",
+      "lat": -25.5427,
+      "lng": -54.5827,
+      "insurancePoolSnapshot": 0,
+      "status": "ABERTO",
+      "createdAt": "2026-11-27T00:06:31.758Z",
+      "resolvedAt": null
+    },
+    {
+      "id": "sos-1795737703211",
+      "courierId": "bike-danif-1-1795737687161",
+      "courierName": "Ciclista Avaria E2E",
+      "courierPhone": "(45) 99966-1100",
+      "reason": "PANE MECÂNICA NA BIKE",
+      "cargoCondition": "DANIFICADA",
+      "activeOrderId": "ord-1795737689511",
+      "activeOrderSummary": "Burger 10 -> Rec8742 Souza (DANIFICADA)",
       "lat": -25.5478,
       "lng": -54.5882,
       "insurancePoolSnapshot": 0,
       "status": "ABERTO",
-      "createdAt": "2026-11-26T19:06:42.134Z",
+      "createdAt": "2026-11-27T00:01:43.211Z",
+      "resolvedAt": null
+    },
+    {
+      "id": "sos-1795737684260",
+      "courierId": "bike-primario-1795737668008",
+      "courierName": "Ciclista Primario E2E",
+      "courierPhone": "(45) 99977-1122",
+      "reason": "PANE MECÂNICA NA BIKE",
+      "cargoCondition": "INTACTA",
+      "activeOrderId": "ord-1795737670511",
+      "activeOrderSummary": "Burger 10 -> E2E9705 Silva (INTACTA)",
+      "lat": -25.5478,
+      "lng": -54.5882,
+      "insurancePoolSnapshot": 0,
+      "status": "ABERTO",
+      "createdAt": "2026-11-27T00:01:24.260Z",
       "resolvedAt": null
     }
   ]

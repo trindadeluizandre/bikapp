@@ -30,9 +30,10 @@ function estimateDistanceKm(origin, dest) {
 
 function getStageLabel(status) {
   const map = {
-    AGUARDANDO_CONFIRMACAO_LOJA: '0/4 Aguardando Loja Confirmar Estoque e Embalo',
+    AGUARDANDO_CONFIRMACAO_LOJA: '0/4 Aguardando Loja Confirmar Estoque',
+    EM_PREPARO_NA_LOJA: '0/4 Pedido em Preparo na Loja (Ciclista será chamado ao embalar)',
     RECUSADO_PELA_LOJA: 'Pedido Recusado pela Loja (Item Indisponível)',
-    AGUARDANDO_CICLISTA: '1/4 Estoque Confirmado • Aguardando Ciclista Aceitar',
+    AGUARDANDO_CICLISTA: '1/4 Pedido Pronto no Balcão • Chamando Ciclista',
     ACEITO_PELO_CICLISTA: '2/4 Ciclista a Caminho da Loja',
     NO_LOCAL_COLETA: '3/4 Ciclista Retirando na Loja',
     INCIDENTE_EM_ROTA: 'Imprevisto em Rota • Seguro BikApp Ativado',
@@ -105,12 +106,14 @@ function fillCustomerForm(customer) {
   if (!customer) {
     document.getElementById('custName').value = '';
     document.getElementById('custPhone').value = '';
+    document.getElementById('custCpf').value = '';
     document.getElementById('custAddress').value = '';
     document.getElementById('custNeighborhood').value = 'CENTRO';
     return;
   }
   document.getElementById('custName').value = customer.name || '';
   document.getElementById('custPhone').value = customer.phone || '';
+  document.getElementById('custCpf').value = customer.cpf || '';
   document.getElementById('custAddress').value = customer.address || '';
   document.getElementById('custNeighborhood').value = customer.neighborhood || 'CENTRO';
 }
@@ -331,6 +334,13 @@ async function loadClientOrdersAndMap() {
         `;
       }
 
+      const pinBanner =
+        o.deliveryPin && !isDone && !isRejected
+          ? `<div style="margin-top:6px; padding:6px 8px; border-radius:6px; background:#0f172a; border:1px solid #38bdf8; color:#bae6fd; font-size:0.84rem;">
+               Senha de Entrega (4 últimos dígitos do seu CPF): <strong style="font-size:0.98rem; color:#38bdf8;">${o.deliveryPin}</strong>
+             </div>`
+          : '';
+
       return `
         <div class="client-order-card" style="${isIncident ? 'border: 1px solid #f59e0b;' : ''}">
           <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
@@ -339,8 +349,9 @@ async function loadClientOrdersAndMap() {
           </div>
           <div style="margin-top:4px; font-size:0.88rem;">
             Itens: ${o.itemsSummary || o.category}<br/>
-            Ciclista: <strong>${o.courierName || (o.status === 'AGUARDANDO_CONFIRMACAO_LOJA' ? 'Aguardando confirmação da loja' : 'Aguardando aceite')}</strong> | Distância: <strong>${o.distanceKm || '-'} km</strong><br/>
+            Ciclista: <strong>${o.courierName || (o.status === 'AGUARDANDO_CONFIRMACAO_LOJA' || o.status === 'EM_PREPARO_NA_LOJA' ? 'Será chamado assim que o pedido estiver pronto' : 'Aguardando aceite')}</strong> | Distância: <strong>${o.distanceKm || '-'} km</strong><br/>
             Produtos: <strong>${formatBRL(itemsVal)}</strong> | Entrega Bike: <strong>${formatBRL(deliveryFee)}</strong> | Seguro em rota: <strong>ATIVO</strong>
+            ${pinBanner}
             ${rejectionLine}
             ${incidentPanelHtml}
           </div>
@@ -432,6 +443,7 @@ document.getElementById('customerProfileForm').addEventListener('submit', async 
     id: isCreatingNew ? undefined : activeCustomerId,
     name: document.getElementById('custName').value,
     phone: document.getElementById('custPhone').value,
+    cpf: document.getElementById('custCpf').value,
     neighborhood: document.getElementById('custNeighborhood').value,
     address: document.getElementById('custAddress').value,
   };
